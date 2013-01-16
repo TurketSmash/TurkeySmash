@@ -91,11 +91,6 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\MenuPause.jpg">
-      <Name>MenuPause</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="Images\MenuPrincipal.jpg">
       <Name>MenuPrincipal</Name>
       <Importer>TextureImporter</Importer>
@@ -105,6 +100,13 @@
   <ItemGroup>
     <Compile Include="Images\MenuResolution.jpg">
       <Name>MenuResolution</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Images\MenuPause.png">
+      <Name>MenuPause</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
