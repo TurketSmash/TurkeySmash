@@ -22,10 +22,8 @@ namespace TurkeySmash
 
             public Pause()
             {
-                xPos = TurkeySmashGame.manager.PreferredBackBufferWidth / 4;
-                yPos = TurkeySmashGame.manager.PreferredBackBufferHeight / 4;
                 bouton1 = new BoutonMenu(xPos, yPos + 100);
-                bouton2 = new BoutonMenu(xPos, yPos + 200);
+                bouton2 = new BoutonMenu(xPos, yPos + 300);
                 bouton1.Texte = "Retour";
                 bouton2.Texte = "Menu Principal";
             }
