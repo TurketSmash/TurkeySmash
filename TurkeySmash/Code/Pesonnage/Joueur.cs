@@ -36,13 +36,22 @@ namespace TurkeySmash
         public override void Update()
         {
             input.Update();
-
-            if (input.Right())
-                velocityX += 2.0f;
-            else if (input.Left())
-                velocityX += -2.0f;
+            if (velocityY == 0)
+            {
+                if (input.Right())
+                    velocityX += 2.0f;
+                else if (input.Left())
+                    velocityX += -2.0f;
+                else
+                    velocityX = 0;
+            }
             else
-                velocityX = 0;
+            {
+                if (input.Right())
+                    XPos += 6.0f;
+                else if (input.Left())
+                    XPos -= 6.0f;
+            }
 
             if (input.Jump())
                 base.Jump();

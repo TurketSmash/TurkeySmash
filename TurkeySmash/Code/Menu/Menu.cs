@@ -15,7 +15,8 @@ namespace TurkeySmash
         protected List<BoutonMenu> boutons = new List<BoutonMenu>();
         protected Sprite backgroundMenu = new Sprite();
         private int select = 1;
-        private KeyboardState oldState;
+        private KeyboardState oldStateK;
+        private GamePadState oldStateG;
 
         #endregion
 
@@ -23,12 +24,14 @@ namespace TurkeySmash
 
         public override void Update(Input input)
         {
-            KeyboardState newState = Keyboard.GetState();
-            newState = Keyboard.GetState();
+            KeyboardState newStateK = Keyboard.GetState();
+            GamePadState newStateG = GamePad.GetState(PlayerIndex.One);
 
-            if (oldState.IsKeyUp(Keys.Down) && newState.IsKeyDown(Keys.Down))
+            if ((oldStateK.IsKeyUp(Keys.Down) && newStateK.IsKeyDown(Keys.Down))
+                    || (oldStateG.DPad.Down == ButtonState.Released && newStateG.DPad.Down == ButtonState.Pressed))
                     select++;
-            if (oldState.IsKeyUp(Keys.Up) && newState.IsKeyDown(Keys.Up))
+            if (oldStateK.IsKeyUp(Keys.Up) && newStateK.IsKeyDown(Keys.Up)
+                    || (oldStateG.DPad.Up == ButtonState.Released && newStateG.DPad.Up == ButtonState.Pressed))
                     select--;
 
             if (select > boutons.Count)
@@ -36,8 +39,6 @@ namespace TurkeySmash
 
             if (select < 1)
                     select = boutons.Count;
-            
-            
 
             foreach (BoutonMenu bouton in boutons)
             {
@@ -66,7 +67,8 @@ namespace TurkeySmash
                 }
             }
 
-            oldState = newState;
+            oldStateK = newStateK;
+            oldStateG = newStateG;
         }
 
         public override void Render()
