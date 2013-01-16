@@ -39,6 +39,8 @@ namespace TurkeySmash
 
         #region Construction and Initialization
 
+
+
         public Decor(List<Element3D> elements)
         {
             this.elements = elements;
@@ -50,6 +52,8 @@ namespace TurkeySmash
             GlobalHitBoxesList.Add(new Rectangle(400, 450, 725, 50));
         }
 
+
+
         public void Init()
         {
             foreach(Personnage player in elements)
@@ -60,6 +64,8 @@ namespace TurkeySmash
             }
         }
 
+
+
         public void Load(ContentManager content, string name)
         {
             model = content.Load<Model>(name);
@@ -68,6 +74,8 @@ namespace TurkeySmash
         }
 
         #endregion
+
+
 
         public void Update()
         {
@@ -86,10 +94,14 @@ namespace TurkeySmash
             }
         }
 
+
+
         public bool IsOutScreen(Objet objet)
         {
             return objet.XPos < cadreDecor.Left || objet.XPos > cadreDecor.Right || objet.YPos < cadreDecor.Bottom || objet.YPos > cadreDecor.Top;
         }
+
+
 
         public void Respawn(Personnage personnage)
         {
@@ -98,13 +110,19 @@ namespace TurkeySmash
                 personnage.Position = positionRespawn;
                 personnage.Life--;
             }
+            personnage.velocityX = 0;
+            personnage.velocityY = 0;
         }
+
+
 
         public void Update(Personnage personnage)
         {
             if (IsOutScreen(personnage))
                 Respawn(personnage);
         }
+
+
 
         public void Draw(Camera camera) // Meme methode que Element3D sans rotation ni translation
         {

@@ -28,6 +28,29 @@ namespace TurkeySmash
             Position = positionSpawn;
         }
 
+        #region deplacement
+
+        protected void Right()
+        {
+            if (velocityY == 0)
+                velocityX += 2.0f;
+            else
+                XPos += 6.0f;
+            Rotation = MathHelper.ToRadians(90);
+        }
+
+        protected void Left()
+        {
+            if (velocityY == 0)
+                velocityX += -2.0f;
+            else
+                XPos -= 6.0f;
+            Rotation = MathHelper.ToRadians(270);
+        }
+
+        #endregion
+
+
         #region gameplay
         // chaque feature du gameplay sont crées ici de la meme manière
         // l'utilisation de ces fonctions se fait ensuite dans les classes filles : Joueur et AI 

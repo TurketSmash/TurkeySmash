@@ -11,7 +11,7 @@ namespace TurkeySmash
         private Vector2 Lstick;
         private enum GameState { Game, Disconnected }
         private GameState gameState = GameState.Game;
-        private bool disconnect = false;   
+        private bool disconnect = false;
 
         #endregion
 
