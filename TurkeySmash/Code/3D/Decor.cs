@@ -121,11 +121,6 @@ namespace TurkeySmash
                 mesh.Draw();
             }
         }
-
-        public void AddHitBoxes(ref List<Rectangle> GlobalHitBoxesList, List<Rectangle> listeHitBoxes) //Ajoute les HitBox du Decor a la liste globale
-        {
-            GlobalHitBoxesList.Concat<Rectangle>(listeHitBoxes);
-        }
     }
 }
 
