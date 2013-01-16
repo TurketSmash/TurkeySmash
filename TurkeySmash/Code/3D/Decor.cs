@@ -45,7 +45,9 @@ namespace TurkeySmash
             Position = Vector3.Zero;
             spawnPoints[0] = new Vector3(-1450, 0, 0);
             Init();
-            GlobalHitBoxesList.Add(new Rectangle(-1825, 0, 3650, 50));
+            GlobalHitBoxesList.Add(new Rectangle(-1825, -150, 3650, 150));
+            GlobalHitBoxesList.Add(new Rectangle(-750, 0, 850, 250));
+            GlobalHitBoxesList.Add(new Rectangle(400, 450, 725, 50));
         }
 
         public void Init()
@@ -118,11 +120,6 @@ namespace TurkeySmash
                 }
                 mesh.Draw();
             }
-        }
-
-        public Vector3 SpawnPoint(PlayerIndex player)
-        {
-            return spawnPoints[(int)player];
         }
 
         public void AddHitBoxes(ref List<Rectangle> GlobalHitBoxesList, List<Rectangle> listeHitBoxes) //Ajoute les HitBox du Decor a la liste globale

@@ -6,8 +6,15 @@ namespace TurkeySmash
     class Objet : Element3D
     {
         private Vector2 modelSize;
+        private Rectangle hitbox;
 
-        public Vector2 Size { get { return modelSize; } }
+        #region Properties
+
+        public Vector2 Size { get { return modelSize; } set { modelSize = value; } }
+        public float XSize { get { return modelSize.X; } set { modelSize.X = value; } }
+        public float YSize { get { return modelSize.Y; } set { modelSize.Y = value; } }
+
+        #endregion
 
         public Objet(float rotation = 0.0f)
         {
@@ -23,29 +30,13 @@ namespace TurkeySmash
 
         public override void Update()
         {
-            if (YPos > 0 | XPos > 1800 | XPos < -1800)
-                YPos -= 25;
-
-            if (YPos > -30)
-            {
-                if (YPos < 0 & (XPos > -1800 & XPos < 1800))
-                    YPos = 0;
-            }
-            else
-                YPos -= 1;
-
-
+            
         }
 
-        public Rectangle HitBox(Vector2 modelSize) //Creer la hitbox du personnage
+        public Rectangle HitBox()
         {
-            return new Rectangle(
-                (int)Position.X, (int)Position.Y, (int)modelSize.X, (int)modelSize.Y);
-        }
-
-        public BoundingSphere HitSphere(float modelSize, Objet objet)  //Créer une hitbox spherique ?
-        {
-            return new BoundingSphere(objet.Position, modelSize);
+            hitbox = new Rectangle((int)(XPos - (modelSize.X / 2)), (int)YPos, (int)modelSize.X, (int)modelSize.Y);
+            return hitbox;
         }
     }
 }

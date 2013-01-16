@@ -14,19 +14,24 @@ namespace TurkeySmash
         {
             foreach (Rectangle rect in GlobalHitBoxesList)
             {
-                if (rect.Intersects(objet.HitBox(objet.Size)))
+                Console.WriteLine(rect.Intersects(objet.HitBox()));
+                if (rect.Intersects(objet.HitBox()))
                 {
-                    if (rect.Top > objet.HitBox(objet.Size).Top)
-                        objet.YPos = rect.Top - (objet.HitBox(objet.Size).Top / 2);
+                    // Bottom et Top sont inversés : Top est l'arret inférieur,
+                    // car la Hitbox est crée en fonction de la position du model qui est à la base du model
+                    // et le dessin du rectangle pose de gros probleme avec l'utilisation de valeur négative
+                    // Intersect c'est de la GROSSE MERDE
+                    if (rect.Bottom > objet.HitBox().Top && rect.Bottom < objet.HitBox().Bottom)
+                        objet.YPos = rect.Bottom;
 
-                    if (rect.Bottom < objet.HitBox(objet.Size).Bottom)
-                        objet.YPos = rect.Bottom + (objet.HitBox(objet.Size).Bottom / 2);
+                    if (rect.Top < objet.HitBox().Bottom && rect.Top > objet.HitBox().Top)
+                        objet.YPos = rect.Top - objet.YSize;
 
-                    if (rect.Left > objet.HitBox(objet.Size).Left)
-                        objet.XPos = rect.Left - (objet.HitBox(objet.Size).Left / 2);
+                    if (rect.Left < objet.HitBox().Right && rect.Left > objet.HitBox().Left)
+                        objet.XPos = rect.Left - (objet.XSize / 2);
 
-                    if (rect.Right < objet.HitBox(objet.Size).Right)
-                        objet.XPos = rect.Right + (objet.HitBox(objet.Size).Right / 2);
+                    if (rect.Right > objet.HitBox().Left && rect.Right < objet.HitBox().Right)
+                        objet.XPos = rect.Right + (objet.XSize / 2);
                 }
             }
         }

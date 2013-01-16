@@ -43,6 +43,7 @@ namespace TurkeySmash
             player = new Joueur(PlayerIndex.One);
             background.Load(TurkeySmashGame.content, "Images\\space");
             player.Load(TurkeySmashGame.content, "Models\\dude", elements);
+            player.Size = new Vector2(50, 375);
             level = new Decor(elements);
             level.Load(TurkeySmashGame.content, "Models\\farm");
             camera.Initialize();
@@ -61,9 +62,6 @@ namespace TurkeySmash
             {
                 Basic.SetScreen(new Pause());
             }
-
-            if (input.Enter())
-                camera.Target = player.Position;
 
             Console.Write(player.XPos + " ");
             Console.Write(player.YPos);

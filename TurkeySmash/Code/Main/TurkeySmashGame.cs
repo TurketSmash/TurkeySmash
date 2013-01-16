@@ -59,7 +59,6 @@ namespace TurkeySmash
             if (Basic.screens.Count < 1)
                 this.Exit();
 
-            Console.WriteLine(Basic.screens.Count);
             base.Update(gameTime);
         }
 
