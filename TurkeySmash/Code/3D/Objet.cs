@@ -21,6 +21,22 @@ namespace TurkeySmash
             Rotation = rotation;
         }
 
+        public override void Update()
+        {
+            if (YPos > 0 | XPos > 1800 | XPos < -1800)
+                YPos -= 25;
+
+            if (YPos > -30)
+            {
+                if (YPos < 0 & (XPos > -1800 & XPos < 1800))
+                    YPos = 0;
+            }
+            else
+                YPos -= 1;
+
+
+        }
+
         public Rectangle HitBox(Vector2 modelSize) //Creer la hitbox du personnage
         {
             return new Rectangle(

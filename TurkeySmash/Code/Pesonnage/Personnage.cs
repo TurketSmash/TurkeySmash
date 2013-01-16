@@ -25,6 +25,8 @@ namespace TurkeySmash
         private int modelVelocity = 5;
         private int hauteurSaut = 1;
         private bool jumpAllowed = false;
+        private bool isJumping = false;
+        private float jumpSpeed;
 
         #endregion
 
@@ -49,10 +51,26 @@ namespace TurkeySmash
 
         protected void Jump()               
         {
-            if (jumpAllowed == true)
+            if (YPos == 0 & (XPos > -1800 & XPos < 1800))
             {
-                YPos += hauteurSaut;
+                jumpAllowed = true;
+                jumpSpeed = 50;
+                isJumping = false;
+            }
+
+            if (jumpAllowed)
+            {
+                isJumping = true;
                 jumpAllowed = false;
+            }
+
+            if (jumpSpeed == 0)
+                isJumping = true;
+
+            if (isJumping & jumpSpeed > 0)
+            {
+                YPos += jumpSpeed;
+                jumpSpeed -= 1;
             }
         }
 
