@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.Xna.Framework;
 
-namespace TurkeySmash.Code.Physique
+namespace TurkeySmash
 {
-    class Gravity
+    static class Gravity
     {
-
+        static public void Pesenteur(ref float velocity)
+        {
+            velocity -= 0.5f;
+        }
     }
 }

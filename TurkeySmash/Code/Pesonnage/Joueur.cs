@@ -38,16 +38,11 @@ namespace TurkeySmash
             input.Update();
 
             if (input.Right())
-                XPos += Velocity;
-
-            if (input.Left())
-                XPos -= Velocity;
-
-            if (input.Up())
-                YPos += Velocity;
-
-            if (input.Down())
-                YPos -= Velocity;
+                velocityX += 2.0f;
+            else if (input.Left())
+                velocityX += -2.0f;
+            else
+                velocityX = 0;
 
             if (input.Jump())
                 base.Jump();

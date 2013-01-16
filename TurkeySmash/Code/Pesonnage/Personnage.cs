@@ -22,11 +22,10 @@ namespace TurkeySmash
         private PlayerIndex player = PlayerIndex.One;
         private int percent = 0;
         private int life;
-        private int modelVelocity = 5;
         private int hauteurSaut = 1;
-        private bool jumpAllowed = false;
         private bool isJumping = false;
-        private float jumpSpeed;
+        private float jumpSpeed = 0;
+        private bool jumpAllowed = true;
 
         #endregion
 
@@ -35,7 +34,6 @@ namespace TurkeySmash
         public PlayerIndex Player { get { return player; } set { player = value; } }
         public int Life { get { return life; } set { life = value; } }
         public int Percent { get { return percent; } set { percent = value; } }
-        public int Velocity { get { return 5 * modelVelocity; } set { modelVelocity = value; } }
         public int HauteurSaut { get { return hauteurSaut; } set { hauteurSaut = value; } }
 
         #endregion
@@ -51,10 +49,10 @@ namespace TurkeySmash
 
         protected void Jump()               
         {
-            if (YPos == 0 & (XPos > -1800 & XPos < 1800))
+            if (velocityY == 0)
             {
                 jumpAllowed = true;
-                jumpSpeed = 50;
+                jumpSpeed = 40;
                 isJumping = false;
             }
 
@@ -72,16 +70,12 @@ namespace TurkeySmash
                 YPos += jumpSpeed;
                 jumpSpeed -= 1;
             }
+
         }
 
         public bool Mort()
         {
-            return life <= 0;
-        }
-
-        public void DelLife()
-        {
-            life--;
+            return life < 1;
         }
 
         #endregion
