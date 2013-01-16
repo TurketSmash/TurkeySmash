@@ -14,13 +14,15 @@ namespace TurkeySmash
         private Vector2 FontOrigin;
         private float tailleText = 1.0f;
         private string police = "SuperMario";
-        private string texte;
+        private string texte = "";
 
         #endregion
 
         #region Properties
 
         public Vector2 Position { set { position = value; } }
+        public float XPos { set { position.X = value; } }
+        public float YPos { set { position.Y = value; } }
         public string NameFont { set { police = value; } }
         public string Texte { set { texte = value; } }
         public Color Color { set { color = value; } }

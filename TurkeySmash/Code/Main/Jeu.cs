@@ -16,9 +16,10 @@ namespace TurkeySmash
         private Sprite background;
         private Camera camera;
         private Decor level;
-        private Joueur player;
+        private List<Personnage> players = new List<Personnage>();
         private List<Element3D> elements = new List<Element3D>();
         private GameTime gameTime;
+        private HUD hud = new HUD();
 
         #endregion 
 
@@ -40,12 +41,13 @@ namespace TurkeySmash
         {
             camera = new Camera(TurkeySmashGame.manager);
             background = new Sprite();
-            player = new Joueur(PlayerIndex.One);
+            players.Add(new Joueur(PlayerIndex.One));
             background.Load(TurkeySmashGame.content, "Images\\space");
-            player.Load(TurkeySmashGame.content, "Models\\dude", elements);
-            player.Size = new Vector2(50, 375);
+            players[0].Load(TurkeySmashGame.content, "Models\\dude", elements);
+            players[0].Size = new Vector2(50, 375);
             level = new Decor(elements);
             level.Load(TurkeySmashGame.content, "Models\\farm");
+            hud.Load(players);
             camera.Initialize();
         }
 
@@ -57,15 +59,12 @@ namespace TurkeySmash
         {
             camera.Update(TurkeySmashGame.manager.GraphicsDevice, gameTime);
             level.Update();
+            hud.Update(players);
 
             if (input.Escape())
             {
                 Basic.SetScreen(new Pause());
             }
-
-            Console.Write(player.XPos + " ");
-            Console.Write(player.YPos);
-            Console.WriteLine();
         }
 
         #endregion
@@ -90,6 +89,12 @@ namespace TurkeySmash
                 {
                     element.Draw(camera);
                 }
+
+                TurkeySmashGame.spriteBatch.Begin();
+
+                hud.Draw();
+
+                TurkeySmashGame.spriteBatch.End(); 
             }
         }
 
