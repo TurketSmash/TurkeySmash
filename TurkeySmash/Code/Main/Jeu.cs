@@ -42,7 +42,7 @@ namespace TurkeySmash
             camera = new Camera(TurkeySmashGame.manager);
             background = new Sprite();
             players.Add(new Joueur(PlayerIndex.One));
-            background.Load(TurkeySmashGame.content, "Images\\space");
+            background.Load(TurkeySmashGame.content, "Jeu\\space");
             players[0].Load(TurkeySmashGame.content, "Models\\dude", elements);
             players[0].Size = new Vector2(50, 375);
             level = new Decor(elements);
@@ -90,11 +90,7 @@ namespace TurkeySmash
                     element.Draw(camera);
                 }
 
-                TurkeySmashGame.spriteBatch.Begin();
-
                 hud.Draw();
-
-                TurkeySmashGame.spriteBatch.End(); 
             }
         }
 

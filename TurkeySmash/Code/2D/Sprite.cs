@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -10,12 +11,32 @@ namespace TurkeySmash
 
         private Vector2 position = new Vector2(0, 0);
         private Texture2D texture;
-        private Rectangle size;
+        private Rectangle edge;
         private float scale = 1.0f;
 
         #endregion
 
         #region Properties
+
+        public Vector2 Position 
+        { 
+            get 
+            { 
+                return position; 
+            } 
+            set 
+            {
+                try
+                {
+                    position.X = value.X - texture.Width / 2;
+                    position.Y = value.Y - texture.Height / 2;
+                }
+                catch (NullReferenceException ex)
+                {
+                    Console.WriteLine(ex.Source);
+                }
+            } 
+        }
 
         public float Scale
         {
@@ -26,7 +47,7 @@ namespace TurkeySmash
             set
             {
                 scale = value;
-                size = new Rectangle(0, 0, (int)(texture.Width * Scale), (int)(texture.Height * Scale));
+                edge = new Rectangle((int)position.X, (int)position.Y, (int)(texture.Width * Scale), (int)(texture.Height * Scale));
             }
         }
 
@@ -42,15 +63,27 @@ namespace TurkeySmash
 
         #endregion
 
+        #region Load & Draw
+
         public void Load(ContentManager content, string assetName)
         {
-            texture = content.Load<Texture2D>(assetName);
+            try
+            {
+                texture = content.Load<Texture2D>(assetName);
+            }
+            catch
+            {
+                texture = content.Load<Texture2D>("Defaut");
+            }
+            edge = new Rectangle((int)position.X, (int)position.Y, (int)(texture.Width * Scale), (int)(texture.Height * Scale));
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, position, new Rectangle(0, 0, texture.Width, texture.Height), Color.White, 0, Vector2.Zero, Scale, SpriteEffects.None, 0);
         }
+
+        #endregion
 
         public void Resize(float largeur)
         {

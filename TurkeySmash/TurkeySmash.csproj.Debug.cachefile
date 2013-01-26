@@ -1,7 +1,7 @@
-Content\Images\Space.xnb
 Content\Models\dude.xnb
 Content\Models\farm.xnb
 Content\SuperMario.xnb
+Content\Pourcent.xnb
 Content\Models\head_0.xnb
 Content\Models\jacket_0.xnb
 Content\Models\pants_0.xnb
@@ -15,8 +15,10 @@ Content\Textures\02_0.xnb
 Content\Textures\UV main plateform_textured_0.xnb
 Content\Textures\OTF_Grass_09_0.xnb
 Content\Textures\UV plateform_textured_0.xnb
-Content\Images\MenuOption.xnb
-Content\Images\MenuPrincipal.xnb
-Content\Images\MenuResolution.xnb
-Content\Pourcent.xnb
-Content\Images\MenuPause.xnb
+Content\Jeu\Space.xnb
+Content\Menu\MenuOption.xnb
+Content\Menu\MenuPrincipal.xnb
+Content\Menu\MenuResolution.xnb
+Content\Menu\MenuPause.xnb
+Content\Menu\Farm Space.xnb
+Content\Defaut.xnb

@@ -1,12 +1,4 @@
-﻿#region Using
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-#endregion
-
-namespace TurkeySmash
+﻿namespace TurkeySmash
 {
     class Accueil : Menu
     {
@@ -14,10 +6,10 @@ namespace TurkeySmash
 
         private float xPos = 300;
         private float yPos = 200;
-        private BoutonMenu bouton1;
-        private BoutonMenu bouton2;
-        private BoutonMenu bouton3;
-        private BoutonMenu bouton4;
+        private BoutonTexte bouton1;
+        private BoutonTexte bouton2;
+        private BoutonTexte bouton3;
+        private BoutonTexte bouton4;
 
         #endregion
 
@@ -27,10 +19,10 @@ namespace TurkeySmash
         {
             xPos = TurkeySmashGame.manager.PreferredBackBufferWidth / 4;
             yPos = TurkeySmashGame.manager.PreferredBackBufferHeight / 4;
-            bouton1 = new BoutonMenu(xPos, yPos + 100);
-            bouton2 = new BoutonMenu(xPos, yPos + 200);
-            bouton3 = new BoutonMenu(xPos, yPos + 300);
-            bouton4 = new BoutonMenu(xPos, yPos + 450);
+            bouton1 = new BoutonTexte(xPos, yPos + 100);
+            bouton2 = new BoutonTexte(xPos, yPos + 200);
+            bouton3 = new BoutonTexte(xPos, yPos + 300);
+            bouton4 = new BoutonTexte(xPos, yPos + 450);
             bouton1.Texte = "Jouer";
             bouton2.Texte = "Multijoueur";
             bouton3.Texte = "Options";
@@ -39,7 +31,7 @@ namespace TurkeySmash
 
         public override void Init()
         {
-            backgroundMenu.Load(TurkeySmashGame.content, "Images\\MenuPrincipal");
+            backgroundMenu.Load(TurkeySmashGame.content, "Menu\\MenuPrincipal");
             bouton1.Load(TurkeySmashGame.content, boutons);
             bouton2.Load(TurkeySmashGame.content, boutons);
             bouton3.Load(TurkeySmashGame.content, boutons);
@@ -50,7 +42,7 @@ namespace TurkeySmash
 
         public override void Bouton1()
         {
-            Basic.SetScreen(new Jeu());
+            Basic.SetScreen(new SelectionNiveau());
         }
 
         public override void Bouton2()

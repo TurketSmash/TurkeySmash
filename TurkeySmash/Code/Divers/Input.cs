@@ -30,7 +30,7 @@ namespace TurkeySmash
 
         #endregion
 
-        #region Disconnected
+        #region Update
 
         void UpdateInput()
         {

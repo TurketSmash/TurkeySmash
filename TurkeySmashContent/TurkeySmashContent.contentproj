@@ -42,7 +42,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Images\Space.jpg">
+    <Compile Include="Jeu\Space.jpg">
       <Name>Space</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -79,19 +79,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Images\MenuOption.jpg">
+    <Compile Include="Menu\MenuOption.jpg">
       <Name>MenuOption</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\MenuPrincipal.jpg">
+    <Compile Include="Menu\MenuPrincipal.jpg">
       <Name>MenuPrincipal</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Images\MenuResolution.jpg">
+    <Compile Include="Menu\MenuResolution.jpg">
       <Name>MenuResolution</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -105,8 +105,22 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Images\MenuPause.png">
+    <Compile Include="Menu\MenuPause.png">
       <Name>MenuPause</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Menu\Farm Space.png">
+      <Name>Farm Space</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Defaut.png">
+      <Name>Defaut</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

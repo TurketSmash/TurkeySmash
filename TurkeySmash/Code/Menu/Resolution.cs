@@ -1,19 +1,13 @@
-﻿using Microsoft.Xna.Framework;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-
-namespace TurkeySmash
+﻿namespace TurkeySmash
 {
     class Resolution : Menu
     {
         #region Fields 
 
-        private BoutonMenu bouton1;
-        private BoutonMenu bouton2;
-        private BoutonMenu bouton3;
-        private BoutonMenu bouton4;
+        private BoutonTexte bouton1;
+        private BoutonTexte bouton2;
+        private BoutonTexte bouton3;
+        private BoutonTexte bouton4;
         private float xPos = 350;
         private float yPos = 200;
 
@@ -25,10 +19,10 @@ namespace TurkeySmash
         {
             xPos = 3 * TurkeySmashGame.manager.PreferredBackBufferWidth / 4;
             yPos = TurkeySmashGame.manager.PreferredBackBufferHeight / 4;
-            bouton1 = new BoutonMenu(xPos, yPos + 100);
-            bouton2 = new BoutonMenu(xPos, yPos + 200);
-            bouton3 = new BoutonMenu(xPos, yPos + 300);
-            bouton4 = new BoutonMenu(xPos, yPos + 450);
+            bouton1 = new BoutonTexte(xPos, yPos + 100);
+            bouton2 = new BoutonTexte(xPos, yPos + 200);
+            bouton3 = new BoutonTexte(xPos, yPos + 300);
+            bouton4 = new BoutonTexte(xPos, yPos + 450);
             bouton1.Texte = "1920x1080";
             bouton2.Texte = "1600x900";
             bouton3.Texte = "1280x720";
@@ -37,7 +31,7 @@ namespace TurkeySmash
 
         public override void Init()
         {
-            backgroundMenu.Load(TurkeySmashGame.content, "Images\\MenuResolution");
+            backgroundMenu.Load(TurkeySmashGame.content, "Menu\\MenuResolution");
             bouton1.Load(TurkeySmashGame.content, boutons);
             bouton2.Load(TurkeySmashGame.content, boutons);
             bouton3.Load(TurkeySmashGame.content, boutons);

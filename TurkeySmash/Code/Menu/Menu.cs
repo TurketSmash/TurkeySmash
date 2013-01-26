@@ -12,9 +12,9 @@ namespace TurkeySmash
     {
         #region Fields 
 
-        protected List<BoutonMenu> boutons = new List<BoutonMenu>();
+        protected List<IBouton> boutons = new List<IBouton>();
         protected Sprite backgroundMenu = new Sprite();
-        private int select = 1;
+        private int selecty = 1;
         private KeyboardState oldStateK;
         private GamePadState oldStateG;
 
@@ -28,29 +28,29 @@ namespace TurkeySmash
             GamePadState newStateG = GamePad.GetState(PlayerIndex.One);
 
             if ((oldStateK.IsKeyUp(Keys.Down) && newStateK.IsKeyDown(Keys.Down))
-                    || (oldStateG.DPad.Down == ButtonState.Released && newStateG.DPad.Down == ButtonState.Pressed))
-                    select++;
+                            || (oldStateG.DPad.Down == ButtonState.Released && newStateG.DPad.Down == ButtonState.Pressed))
+                    selecty++;
             if (oldStateK.IsKeyUp(Keys.Up) && newStateK.IsKeyDown(Keys.Up)
-                    || (oldStateG.DPad.Up == ButtonState.Released && newStateG.DPad.Up == ButtonState.Pressed))
-                    select--;
+                            || (oldStateG.DPad.Up == ButtonState.Released && newStateG.DPad.Up == ButtonState.Pressed))
+                    selecty--;
 
-            if (select > boutons.Count)
-                    select = 1;
+            if (selecty > boutons.Count)
+                    selecty = 1;
 
-            if (select < 1)
-                    select = boutons.Count;
+            if (selecty < 1)
+                    selecty = boutons.Count;
 
-            foreach (BoutonMenu bouton in boutons)
+            foreach (IBouton bouton in boutons)
             {
                 bouton.Etat = false;
             }
-            boutons[select - 1].Etat = true;
+            boutons[selecty - 1].Etat = true;
 
             if (input.Enter() || GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed) 
             {
                 Thread.Sleep(200);
 
-                switch (select)
+                switch (selecty)
                 {
                     case 1:
                         Bouton1();
@@ -77,7 +77,7 @@ namespace TurkeySmash
 
             backgroundMenu.Resize(TurkeySmashGame.manager.PreferredBackBufferWidth);
             backgroundMenu.Draw(TurkeySmashGame.spriteBatch);
-            foreach (BoutonMenu bouton in boutons)
+            foreach (IBouton bouton in boutons)
             {
                 bouton.Draw(TurkeySmashGame.spriteBatch);
             }

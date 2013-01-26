@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace TurkeySmash
 {
-    class BoutonMenu : Font
+    class BoutonTexte : Font, IBouton
     {
         #region Fields 
 
@@ -21,15 +21,12 @@ namespace TurkeySmash
 
         #region Construction 
 
-        public BoutonMenu(float x = 0, float y = 0)
+        public BoutonTexte(float x = 0, float y = 0)
         {
-            if (x != 0)
-                Position = new Vector2(x, y);
-            else
-                Centrage(TurkeySmashGame.manager.GraphicsDevice);
+            Position = new Vector2(x, y);
         }
 
-        public BoutonMenu(Vector2 position)
+        public BoutonTexte(Vector2 position)
         {
             Position = position;
         }
@@ -38,7 +35,7 @@ namespace TurkeySmash
 
         #region Load and Draw 
 
-        public void Load(ContentManager Content, List<BoutonMenu> Boutons)
+        public void Load(ContentManager Content, List<IBouton> Boutons)
         {
             base.Load(Content);
             Boutons.Add(this);
@@ -61,10 +58,5 @@ namespace TurkeySmash
         }
 
         #endregion
-
-        public void Centrage(GraphicsDevice device)
-        { 
-            Position = new Vector2(device.Viewport.Width / 2, device.Viewport.Height / 2);
-        }
     }
 }

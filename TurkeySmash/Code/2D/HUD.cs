@@ -40,10 +40,14 @@ namespace TurkeySmash
 
         public void Draw()
         {
+            TurkeySmashGame.spriteBatch.Begin();
+
             for (int i = 0; i <= playersCount - 1; i++)
             {
                 pourcentages[i].Draw(TurkeySmashGame.spriteBatch);
             }
+
+            TurkeySmashGame.spriteBatch.End(); 
         }
     }
 }

@@ -49,7 +49,7 @@ namespace TurkeySmash
 
         #region Load and Draw
 
-        public virtual void Load(ContentManager Content)
+        public void Load(ContentManager Content)
         {
             spriteFont = Content.Load<SpriteFont>(police);
         }
@@ -57,10 +57,21 @@ namespace TurkeySmash
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             FontOrigin = spriteFont.MeasureString(texte) / 2;
+            Resize();
             spriteBatch.DrawString(spriteFont, texte, position, color, 0, FontOrigin, tailleText, SpriteEffects.None, 0.5f);
         }
 
         #endregion
+
+        public void Resize()
+        {
+            if (TurkeySmashGame.manager.PreferredBackBufferWidth == 1280)
+                tailleText = 0.7f;
+            else if (TurkeySmashGame.manager.PreferredBackBufferWidth == 1920)
+                tailleText = 1.3f;
+            else
+                tailleText = 1.0f;
+        }
 
     }
 }
