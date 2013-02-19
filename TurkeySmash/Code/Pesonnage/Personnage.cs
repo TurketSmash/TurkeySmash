@@ -2,6 +2,10 @@
 
 namespace TurkeySmash
 {
+    /// <summary>
+    /// Personnage implemente toutes les features réalisablent par les joueurs et l'IA.
+    /// Classe abstraite, ne peut être utilisé directement.
+    /// </summary>
     abstract class Personnage : Objet
     {
         #region Fields
@@ -17,9 +21,15 @@ namespace TurkeySmash
 
         #region Properties 
 
+        /// <summary>
+        /// PlayerIndex représente le numéro du joueur et le controle de la manette.
+        /// </summary>
         public PlayerIndex Player { get { return player; } set { player = value; } }
         public int Life { get { return life; } set { life = value; } }
         public int Percent { get { return percent; } set { percent = value; } }
+        /// <summary>
+        /// Boolean indiquant vrai si le personnage n'a plus de vie.
+        /// </summary>
         public bool Mort { get { return life < 1; } }
 
         #endregion

@@ -54,6 +54,13 @@ namespace TurkeySmash
             level.Update();
             hud.Update(players);
 
+            //
+            // fin de partie
+            // si les joueurs sont morts, alors le dernier est vainqueurs et la partie est terminée.
+            // les joueurs sont stockés dans une liste : players de type Player 
+            // la mort du personnage se vérifié grace à la Propriété "Mort" (bool).
+            //
+            
             if (input.Escape())
             {
                 Basic.SetScreen(new Pause());
