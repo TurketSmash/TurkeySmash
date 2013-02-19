@@ -105,7 +105,7 @@ namespace TurkeySmash
 
         public void Respawn(Personnage personnage)
         {
-            if ((personnage.Mort() == false))
+            if ((personnage.Mort == false))
             {
                 personnage.Position = positionRespawn;
                 personnage.Life--;

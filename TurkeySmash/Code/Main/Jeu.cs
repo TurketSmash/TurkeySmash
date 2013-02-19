@@ -1,10 +1,9 @@
-﻿#region Using
+﻿#region Using Statement
 using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
-
+using Microsoft.Xna.Framework.Graphics; 
 #endregion
 
 namespace TurkeySmash
@@ -22,12 +21,6 @@ namespace TurkeySmash
         private HUD hud = new HUD();
 
         #endregion 
-
-        #region Properties
-
-
-
-        #endregion
 
         #region Construction and Initialization
 

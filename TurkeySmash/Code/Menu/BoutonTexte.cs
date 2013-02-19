@@ -5,6 +5,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace TurkeySmash
 {
+    /// <summary>
+    /// Class affichant un bouton sous forme d'un texte selectionnable
+    /// </summary>
     class BoutonTexte : Font, IBouton
     {
         #region Fields 

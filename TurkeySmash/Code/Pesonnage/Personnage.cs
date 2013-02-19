@@ -20,6 +20,7 @@ namespace TurkeySmash
         public PlayerIndex Player { get { return player; } set { player = value; } }
         public int Life { get { return life; } set { life = value; } }
         public int Percent { get { return percent; } set { percent = value; } }
+        public bool Mort { get { return life < 1; } }
 
         #endregion
 
@@ -76,11 +77,6 @@ namespace TurkeySmash
                 jumpSpeed -= 1;
             }
 
-        }
-
-        public bool Mort()
-        {
-            return life < 1;
         }
 
         #endregion

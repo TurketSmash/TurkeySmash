@@ -83,7 +83,7 @@ namespace TurkeySmash
         /// Load the model asset from content
         /// </summary>
         /// <param name="content"></param>
-        public void LoadContent(ContentManager content)
+        public void Load(ContentManager content)
         {
             this.model = content.Load<Model>(assetName);
             modelExtra = model.Tag as ModelExtra;

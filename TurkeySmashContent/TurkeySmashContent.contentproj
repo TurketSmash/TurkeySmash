@@ -63,6 +63,7 @@
       <Name>SuperMario</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
+      <SubType>Designer</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -71,12 +72,6 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AnimationPipeline\AnimationPipeline.csproj">
-      <Project>{FF2FBE94-50B5-4E78-9592-B95F32A8881E}</Project>
-      <Name>AnimationPipeline</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Menu\MenuOption.jpg">
