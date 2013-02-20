@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Threading;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 #endregion
 
 
@@ -10,13 +12,15 @@ namespace TurkeySmash
 {
     class Menu : Screen
     {
-        #region Fields 
+        #region Fields
 
         protected List<IBouton> boutons = new List<IBouton>();
         protected Sprite backgroundMenu = new Sprite();
         private int selecty = 1;
         private KeyboardState oldStateK;
         private GamePadState oldStateG;
+        private SoundEffect soundSelect;
+        private SoundEffect soundEnter;
 
         #endregion
 
@@ -24,21 +28,33 @@ namespace TurkeySmash
 
         public override void Update(Input input)
         {
+
+            soundSelect = TurkeySmashGame.content.Load<SoundEffect>("Sons\\menuSelect");
+            SoundEffectInstance instanceSelect = soundSelect.CreateInstance();
+            instanceSelect.Volume = 0.2f;
+            instanceSelect.Pan = -0.9f;
+            instanceSelect.Pitch = 0.9f;
             KeyboardState newStateK = Keyboard.GetState();
             GamePadState newStateG = GamePad.GetState(PlayerIndex.One);
 
             if ((oldStateK.IsKeyUp(Keys.Down) && newStateK.IsKeyDown(Keys.Down))
                             || (oldStateG.DPad.Down == ButtonState.Released && newStateG.DPad.Down == ButtonState.Pressed))
-                    selecty++;
+            {
+                selecty++;
+                instanceSelect.Play();
+            }
             if (oldStateK.IsKeyUp(Keys.Up) && newStateK.IsKeyDown(Keys.Up)
                             || (oldStateG.DPad.Up == ButtonState.Released && newStateG.DPad.Up == ButtonState.Pressed))
-                    selecty--;
+            {
+                selecty--;
+                instanceSelect.Play();
+            }
 
             if (selecty > boutons.Count)
-                    selecty = 1;
+                selecty = 1;
 
             if (selecty < 1)
-                    selecty = boutons.Count;
+                selecty = boutons.Count;
 
             foreach (IBouton bouton in boutons)
             {
@@ -46,9 +62,14 @@ namespace TurkeySmash
             }
             boutons[selecty - 1].Etat = true;
 
-            if (input.Enter() || GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed) 
+            if (input.Enter() || GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed)
             {
                 Thread.Sleep(200);
+
+                soundEnter = TurkeySmashGame.content.Load<SoundEffect>("Sons\\latch_1");
+                SoundEffectInstance instanceEnter = soundEnter.CreateInstance();
+                instanceEnter.Volume = 0.05f;
+                instanceEnter.Play();
 
                 switch (selecty)
                 {

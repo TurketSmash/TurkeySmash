@@ -1,4 +1,5 @@
-﻿namespace TurkeySmash
+﻿using Microsoft.Xna.Framework.Media;
+namespace TurkeySmash
 {
     class SelectionNiveau : Menu
     {
@@ -28,6 +29,7 @@
 
         public override void Bouton1()
         {
+            MediaPlayer.Pause();
             Basic.SetScreen(new Jeu());
         }
 

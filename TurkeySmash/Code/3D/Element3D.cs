@@ -10,7 +10,7 @@ namespace TurkeySmash
 
         #region Fields
 
-        private Model model = null;
+        private Model model;
         private float modelRotation = 0.0f;
         private Vector3 modelPosition = new Vector3(0, 0, 0);
         protected Matrix[] transforms;

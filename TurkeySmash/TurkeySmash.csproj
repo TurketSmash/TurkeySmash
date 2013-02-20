@@ -128,9 +128,11 @@
     <Compile Include="Code\3D\Decor.cs" />
     <Compile Include="Code\3D\Element3D.cs" />
     <Compile Include="Code\Menu\Options.cs" />
+    <Compile Include="Code\Menu\OptionsSon.cs" />
     <Compile Include="Code\Menu\Pause.cs" />
     <Compile Include="Code\Menu\Resolution.cs" />
     <Compile Include="Code\Menu\SelectionNiveau.cs" />
+    <Compile Include="Code\Menu\SelectionPersonnages.cs" />
     <Compile Include="Code\Pesonnage\IA.cs" />
     <Compile Include="Code\Divers\Input.cs" />
     <Compile Include="Code\Pesonnage\Joueur.cs" />

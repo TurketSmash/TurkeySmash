@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 
 #endregion
 
@@ -38,6 +39,8 @@ namespace TurkeySmash
 
         public static void Quit()
         {
+            Song song = TurkeySmashGame.content.Load<Song>("Sons\\musique1");
+            MediaPlayer.Resume();
             screens.Remove(screens[screens.Count - 1]);
         }
 

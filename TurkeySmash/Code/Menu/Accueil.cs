@@ -1,4 +1,7 @@
-﻿namespace TurkeySmash
+﻿using Microsoft.Xna.Framework.Audio;
+using System.Threading;
+using Microsoft.Xna.Framework.Media;
+namespace TurkeySmash
 {
     class Accueil : Menu
     {
@@ -10,6 +13,7 @@
         private BoutonTexte bouton2;
         private BoutonTexte bouton3;
         private BoutonTexte bouton4;
+        private SoundEffect soundByebye;
 
         #endregion
 
@@ -31,18 +35,23 @@
 
         public override void Init()
         {
+            Song song = TurkeySmashGame.content.Load<Song>("Sons\\musique1");
+            MediaPlayer.Volume = 0.5f;
+            MediaPlayer.IsRepeating = true;
+            MediaPlayer.Play(song);
             backgroundMenu.Load(TurkeySmashGame.content, "Menu\\MenuPrincipal");
             bouton1.Load(TurkeySmashGame.content, boutons);
             bouton2.Load(TurkeySmashGame.content, boutons);
             bouton3.Load(TurkeySmashGame.content, boutons);
             bouton4.Load(TurkeySmashGame.content, boutons);
+            soundByebye = TurkeySmashGame.content.Load<SoundEffect>("Sons\\byebye");
         }
 
         #endregion
 
         public override void Bouton1()
         {
-            Basic.SetScreen(new SelectionNiveau());
+            Basic.SetScreen(new SelectionPersonnage());
         }
 
         public override void Bouton2()
@@ -57,6 +66,9 @@
 
         public override void Bouton4()
         {
+            MediaPlayer.Volume = 0.2f;
+            soundByebye.Play();
+            Thread.Sleep(620);
             Basic.Quit();
         }
     }

@@ -2,7 +2,7 @@
 {
     class Options : Menu
     {
-        #region Fields 
+        #region Fields
 
         private BoutonTexte bouton1;
         private BoutonTexte bouton2;
@@ -43,14 +43,14 @@
 
         public override void Bouton1()
         {
-
+            Basic.SetScreen(new OptionsSon());
         }
 
         public override void Bouton2()
         {
             Basic.SetScreen(new Resolution());
         }
-        
+
         public override void Bouton3()
         {
             TurkeySmashGame.manager.ToggleFullScreen();

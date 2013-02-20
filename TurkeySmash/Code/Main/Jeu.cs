@@ -3,7 +3,8 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics; 
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio; 
 #endregion
 
 namespace TurkeySmash
@@ -19,6 +20,8 @@ namespace TurkeySmash
         private List<Element3D> elements = new List<Element3D>();
         private GameTime gameTime;
         private HUD hud = new HUD();
+        public static SoundEffect sonEspace = TurkeySmashGame.content.Load<SoundEffect>("Sons\\sonEspace");
+        public SoundEffectInstance sonInstance = sonEspace.CreateInstance();
 
         #endregion 
 
@@ -42,6 +45,10 @@ namespace TurkeySmash
             level.Load(TurkeySmashGame.content, "Models\\farm");
             hud.Load(players);
             camera.Initialize();
+
+            sonInstance.Volume = 0.5f;
+            sonInstance.IsLooped = true;
+            sonInstance.Resume();
         }
 
         #endregion
@@ -53,6 +60,7 @@ namespace TurkeySmash
             camera.Update(TurkeySmashGame.manager.GraphicsDevice, gameTime);
             level.Update();
             hud.Update(players);
+            sonInstance.Resume();
 
             //
             // fin de partie
@@ -63,6 +71,7 @@ namespace TurkeySmash
             
             if (input.Escape())
             {
+                sonInstance.Pause();
                 Basic.SetScreen(new Pause());
             }
         }
