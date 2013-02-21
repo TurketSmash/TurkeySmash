@@ -54,12 +54,12 @@ namespace TurkeySmash
 
         public override void Bouton1()
         {
-            MediaPlayer.Volume = MediaPlayer.Volume - 0.1f;
+            MediaPlayer.Volume = MediaPlayer.Volume - 0.2f;
         }
 
         public override void Bouton2()
         {
-            MediaPlayer.Volume = MediaPlayer.Volume + 0.1f;
+            MediaPlayer.Volume = MediaPlayer.Volume + 0.2f;
         }
 
         public override void Bouton3()

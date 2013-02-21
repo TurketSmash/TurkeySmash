@@ -122,8 +122,6 @@ namespace TurkeySmash
                 Respawn(personnage);
         }
 
-
-
         public void Draw(Camera camera) // Meme methode que Element3D sans rotation ni translation
         {
             foreach (ModelMesh mesh in model.Meshes)

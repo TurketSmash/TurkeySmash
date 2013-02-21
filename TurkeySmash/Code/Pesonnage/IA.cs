@@ -10,18 +10,30 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using System.Threading;
 #endregion
 
 namespace TurkeySmash
 {
     class IA : Personnage
     {
-        public IA(PlayerIndex player, Vector3 position, float rotation = 0.0f, int life = 5)
+        public IA(PlayerIndex Player, float rotation = 0.0f, int life = 5)
         {
-            Position = position;
-            Rotation = rotation;
-            base.Player = player;
+            if (rotation == 0)
+                Rotation = MathHelper.ToRadians(90);
+            else
+                Rotation = rotation;
+            base.Player = Player;
             base.Life = life;
         }
+
+        public override void Update()
+        {
+
+
+            base.Jump();
+            base.Update();
+        }
+
     }
 }

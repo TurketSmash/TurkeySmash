@@ -31,7 +31,7 @@ namespace TurkeySmash
 
             soundSelect = TurkeySmashGame.content.Load<SoundEffect>("Sons\\menuSelect");
             SoundEffectInstance instanceSelect = soundSelect.CreateInstance();
-            instanceSelect.Volume = 0.2f;
+            instanceSelect.Volume = 0.3f;
             instanceSelect.Pan = -0.9f;
             instanceSelect.Pitch = 0.9f;
             KeyboardState newStateK = Keyboard.GetState();
@@ -68,7 +68,7 @@ namespace TurkeySmash
 
                 soundEnter = TurkeySmashGame.content.Load<SoundEffect>("Sons\\latch_1");
                 SoundEffectInstance instanceEnter = soundEnter.CreateInstance();
-                instanceEnter.Volume = 0.05f;
+                instanceEnter.Volume = 0.2f;
                 instanceEnter.Play();
 
                 switch (selecty)

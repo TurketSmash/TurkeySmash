@@ -56,7 +56,10 @@ namespace TurkeySmash
 
         public override void Bouton2()
         {
-
+            Basic.SetScreen(new SelectionPersonnage());
+            Basic.SetScreen(new SelectionNiveau());
+            MediaPlayer.Pause();
+            Basic.SetScreen(new Multi());
         }
 
         public override void Bouton3()
