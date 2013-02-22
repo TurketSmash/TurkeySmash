@@ -39,7 +39,10 @@ namespace TurkeySmash
             background = new Sprite();
             players.Add(new Joueur(PlayerIndex.One));
             background.Load(TurkeySmashGame.content, "Jeu\\space");
-            players[0].Load(TurkeySmashGame.content, "Models\\dude", elements);
+            if (SelectionPersonnage.persoSelect == "soldat")
+                players[0].Load(TurkeySmashGame.content, "Models\\dude", elements);
+            else
+                players[0].Load(TurkeySmashGame.content, "Models\\dude", elements);
             players[0].Size = new Vector2(50, 375);
             level = new Decor(elements);
             level.Load(TurkeySmashGame.content, "Models\\farm");

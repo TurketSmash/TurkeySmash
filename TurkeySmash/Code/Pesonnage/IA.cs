@@ -29,9 +29,16 @@ namespace TurkeySmash
 
         public override void Update()
         {
+            if (Multi.players[0].XPos > base.XPos)
+                base.Right();
+            else if (Multi.players[0].XPos < base.XPos)
+                base.Left();
+            else
+                base.velocityX = 0;
 
-
+            if (Multi.players[0].velocityY ==0)
             base.Jump();
+
             base.Update();
         }
 

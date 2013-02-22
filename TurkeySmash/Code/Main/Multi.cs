@@ -16,7 +16,7 @@ namespace TurkeySmash
         private Sprite background;
         private Camera camera;
         private Decor level;
-        private List<Personnage> players = new List<Personnage>();
+        public static List<Personnage> players = new List<Personnage>();
         private List<Element3D> elements = new List<Element3D>();
         private GameTime gameTime;
         private HUD hud = new HUD();
