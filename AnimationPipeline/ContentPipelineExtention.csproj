@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AnimationPipeline</RootNamespace>
-    <AssemblyName>AnimationPipeline</AssemblyName>
+    <RootNamespace>ContentPipelineExtention</RootNamespace>
+    <AssemblyName>ContentPipelineExtention</AssemblyName>
     <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
   </PropertyGroup>
@@ -49,15 +49,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Code\AnimationClipWriter.cs" />
-    <Compile Include="Code\ModelExtraWriter.cs" />
-    <Compile Include="Code\AnimationProcessor.cs" />
+    <Compile Include="Animation\AnimationClipWriter.cs" />
+    <Compile Include="Animation\ModelExtraWriter.cs" />
+    <Compile Include="Animation\AnimationProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AnimationAux\AnimationAux.csproj">
+    <ProjectReference Include="..\AnimationAux\Libraries.csproj">
       <Project>{F2F7FA8C-1FC7-42CC-93D8-E5DFF48AC09B}</Project>
-      <Name>AnimationAux</Name>
+      <Name>Libraries</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

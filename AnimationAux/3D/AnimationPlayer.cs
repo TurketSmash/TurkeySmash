@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using AnimationAux;
+using Libraries;
 using System.ComponentModel;
 using Microsoft.Xna.Framework;
 
 
-namespace TurkeySmash
+namespace Libraries
 {
     /// <summary>
     /// Animation clip player. It maps an animation clip onto a model

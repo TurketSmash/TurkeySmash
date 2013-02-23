@@ -6,9 +6,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
-using AnimationAux;
+using Libraries;
 
-namespace TurkeySmash
+namespace Libraries
 {
     /// <summary>
     /// An encloser for an XNA model that we will use that includes support for
@@ -18,30 +18,18 @@ namespace TurkeySmash
     {
         #region Fields
 
-        /// <summary>
-        /// The actual underlying XNA model
-        /// </summary>
         private Model model = null;
-
-        /// <summary>
-        /// Extra data associated with the XNA model
-        /// </summary>
         private ModelExtra modelExtra = null;
-
-        /// <summary>
-        /// The model bones
-        /// </summary>
         private List<Bone> bones = new List<Bone>();
-
-        /// <summary>
-        /// The model asset name
-        /// </summary>
-        private string assetName = "";
-
-        /// <summary>
-        /// An associated animation clip player
-        /// </summary>
         private AnimationPlayer player = null;
+        private float modelRotation = 0.0f;
+        private Vector3 modelPosition = new Vector3(0, 0, 0);
+        protected Matrix[] transforms;
+        private float scale = 5.0f;
+        private Matrix world;
+        private Vector2 modelSize;
+        private Rectangle hitbox;
+        private Vector2 velocity = new Vector2(0, 0);
 
         #endregion
 
@@ -64,6 +52,46 @@ namespace TurkeySmash
         /// The model animation clips
         /// </summary>
         public List<AnimationClip> Clips { get { return modelExtra.Clips; } }
+        public Vector3 Position { get { return modelPosition; } set { modelPosition = value; } }
+        public float XPos { get { return modelPosition.X; } set { modelPosition.X = value; } }
+        public float YPos { get { return modelPosition.Y; } set { modelPosition.Y = value; } }
+        public float ZPos { get { return modelPosition.Z; } set { modelPosition.Z = value; } }
+        public float Rotation { get { return modelRotation; } set { modelRotation = value; } }
+        public float Scalecale { get { return scale; } set { scale = value; } }
+        public Vector2 Size { get { return modelSize; } set { modelSize = value; } }
+        public float XSize { get { return modelSize.X; } set { modelSize.X = value; } }
+        public float YSize { get { return modelSize.Y; } set { modelSize.Y = value; } }
+        public float velocityX
+        {
+            get
+            {
+                return velocity.X;
+            }
+            set
+            {
+                velocity.X = value;
+                if (velocity.X > 30.0f)
+                    velocity.X = 30.0f;
+                else if (velocity.X < -30.0f)
+                    velocity.X = -30.0f;
+            }
+        }
+
+        public float velocityY
+        {
+            get
+            {
+                return velocity.Y;
+            }
+            set
+            {
+                velocity.Y = value;
+                if (velocity.Y > 30.0f)
+                    velocity.Y = 30.0f;
+                else if (velocity.Y < -30.0f)
+                    velocity.Y = -30.0f;
+            }
+        }
 
         #endregion
 
@@ -73,17 +101,19 @@ namespace TurkeySmash
         /// Constructor. Creates the model from an XNA model
         /// </summary>
         /// <param name="assetName">The name of the asset for this model</param>
-        public AnimatedModel(string assetName)
+        public AnimatedModel() { }
+        
+        public AnimatedModel(Vector3 position, float rotation = 5.0f)
         {
-            this.assetName = assetName;
-
+            Position = position;
+            Rotation = rotation;
         }
 
         /// <summary>
         /// Load the model asset from content
         /// </summary>
         /// <param name="content"></param>
-        public void Load(ContentManager content)
+        public void Load(string assetName, ContentManager content)
         {
             this.model = content.Load<Model>(assetName);
             modelExtra = model.Tag as ModelExtra;
@@ -154,7 +184,7 @@ namespace TurkeySmash
         /// Update animation for the model.
         /// </summary>
         /// <param name="gameTime"></param>
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
             if (player != null)
             {
@@ -180,6 +210,8 @@ namespace TurkeySmash
             //
             // Compute all of the bone absolute transforms
             //
+            world = Matrix.CreateScale(scale) * Matrix.CreateRotationY(modelRotation)
+                        * Matrix.CreateTranslation(modelPosition);
 
             Matrix[] boneTransforms = new Matrix[bones.Count];
 

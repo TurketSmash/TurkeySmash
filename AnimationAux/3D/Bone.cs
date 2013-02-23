@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 
-namespace TurkeySmash
+namespace Libraries
 {
     /// <summary>
     /// Bones in this model are represented by this class, which

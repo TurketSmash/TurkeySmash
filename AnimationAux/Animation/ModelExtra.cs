@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace AnimationAux
+namespace Libraries
 {
     /// <summary>
     /// Class that contains additional information attached to the model and

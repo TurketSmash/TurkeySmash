@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 
-namespace AnimationAux
+namespace Libraries
 {
     /// <summary>
     /// An animation clip is a set of keyframes with associated bones.

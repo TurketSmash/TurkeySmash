@@ -6,9 +6,9 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content.Pipeline;
 using Microsoft.Xna.Framework.Content.Pipeline.Graphics;
 using Microsoft.Xna.Framework.Content.Pipeline.Processors;
-using AnimationAux;
+using Libraries;
 
-namespace AnimationPipeline
+namespace ContentPipelineExtention
 {
     /// <summary>
     /// This class extends the standard ModelProcessor to include code
