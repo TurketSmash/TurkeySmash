@@ -45,7 +45,10 @@ namespace TurkeySmash
                 players[0].Load(TurkeySmashGame.content, "Models\\dude", elements);
             players[0].Size = new Vector2(50, 375);
             level = new Decor(elements);
-            level.Load(TurkeySmashGame.content, "Models\\farm");
+            if (SelectionNiveau.niveauSelect == "spacefarm")
+                level.Load(TurkeySmashGame.content, "Models\\farm");
+            else
+                level.Load(TurkeySmashGame.content, "Models\\building");
             hud.Load(players);
             camera.Initialize();
 

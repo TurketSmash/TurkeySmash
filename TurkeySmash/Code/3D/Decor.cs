@@ -45,7 +45,8 @@ namespace TurkeySmash
         {
             this.elements = elements;
             Position = Vector3.Zero;
-            spawnPoints[0] = new Vector3(-1450, 0, 0);
+            spawnPoints[0] = new Vector3(1450, 1000, 0);
+            spawnPoints[1] = new Vector3(-1450, 1000, 0);
             Init();
             GlobalHitBoxesList.Add(new Rectangle(-1825, -150, 3650, 150));
             GlobalHitBoxesList.Add(new Rectangle(-750, 0, 850, 250));

@@ -38,10 +38,11 @@ namespace TurkeySmash
             input.Update();
             if (input.Right())
                 base.Right();
-            else if (input.Left())
-                base.Left();
-            else
-                velocityX = 0;
+            else 
+                if (input.Left())
+                    base.Left();
+                else
+                    velocityX = 0;
 
             if (input.Jump())
                 base.Jump();

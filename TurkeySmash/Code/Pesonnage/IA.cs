@@ -36,7 +36,7 @@ namespace TurkeySmash
             else
                 base.velocityX = 0;
 
-            if (Multi.players[0].velocityY ==0)
+            if (Multi.players[0].YPos > base.YPos)
             base.Jump();
 
             base.Update();
