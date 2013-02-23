@@ -47,7 +47,7 @@ namespace Libraries
                 velocityX += 2.0f;
             else
                 XPos += 6.0f;
-            Rotation = MathHelper.ToRadians(90);
+            YRot = MathHelper.ToRadians(90);
         }
 
         protected void Left()
@@ -56,7 +56,7 @@ namespace Libraries
                 velocityX += -2.0f;
             else
                 XPos -= 6.0f;
-            Rotation = MathHelper.ToRadians(270);
+            YRot = MathHelper.ToRadians(270);
         }
 
         #endregion

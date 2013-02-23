@@ -58,7 +58,7 @@ namespace TurkeySmash
 
         #region Update
 
-        public override void Update(Input input)
+        public override void Update(GameTime gameTime, Input input)
         {
             camera.Update(TurkeySmashGame.manager.GraphicsDevice, gameTime);
             level.Update();

@@ -20,9 +20,9 @@ namespace Libraries
         public IA(PlayerIndex Player, float rotation = 0.0f, int life = 5)
         {
             if (rotation == 0)
-                Rotation = MathHelper.ToRadians(90);
+                YRot = MathHelper.ToRadians(90);
             else
-                Rotation = rotation;
+                YRot = rotation;
             base.Player = Player;
             base.Life = life;
         }

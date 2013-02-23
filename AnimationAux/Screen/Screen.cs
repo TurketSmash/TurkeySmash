@@ -23,7 +23,7 @@ namespace Libraries
 
         public SceneState state = SceneState.Active;
         public virtual void Init() { }
-        public virtual void Update(Input input) { }
+        public virtual void Update(GameTime gameTime, Input input) { }
         public virtual void Render() { }
         public virtual void Quit() { } 
     }

@@ -6,19 +6,16 @@ Content\Menu\MenuPause.xnb
 Content\Menu\Farm Space.xnb
 Content\Defaut.xnb
 Content\Menu\perso1.xnb
-Content\Models\dude.xnb
-Content\Models\farm.xnb
 Content\SuperMario.xnb
 Content\Pourcent.xnb
+Content\Models\farm.xnb
+Content\Models\dude-walk.xnb
+Content\Models\dude.xnb
 Content\Sons\byebye.xnb
 Content\Sons\latch_1.xnb
 Content\Sons\menuSelect.xnb
 Content\Sons\sonEspace.xnb
 Content\Sons\musique1.xnb
-Content\Models\head_0.xnb
-Content\Models\jacket_0.xnb
-Content\Models\pants_0.xnb
-Content\Models\upBodyC_0.xnb
 Content\Textures\door_old1_0.xnb
 Content\Textures\grunge3_0.xnb
 Content\Textures\Brick2_0.xnb
@@ -28,4 +25,8 @@ Content\Textures\02_0.xnb
 Content\Textures\UV main plateform_textured_0.xnb
 Content\Textures\OTF_Grass_09_0.xnb
 Content\Textures\UV plateform_textured_0.xnb
+Content\head_0.xnb
+Content\jacket_0.xnb
+Content\pants_0.xnb
+Content\upBodyC_0.xnb
 Content\Sons\musique1.wma

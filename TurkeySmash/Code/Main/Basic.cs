@@ -19,9 +19,9 @@ namespace TurkeySmash
             screens[0].Init();
         }
 
-        public static void Update(Input input)
+        public static void Update(GameTime gameTime, Input input)
         {
-            screens[screens.Count - 1].Update(input);
+            screens[screens.Count - 1].Update(gameTime, input);
         }
 
         public static void Render()

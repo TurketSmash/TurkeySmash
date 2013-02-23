@@ -22,7 +22,9 @@ namespace Libraries
         private ModelExtra modelExtra = null;
         private List<Bone> bones = new List<Bone>();
         private AnimationPlayer player = null;
-        private float modelRotation = 0.0f;
+        private float modelRotationX = 0.0f;
+        private float modelRotationY = 0.0f;
+        private float modelRotationZ = 0.0f;
         private Vector3 modelPosition = new Vector3(0, 0, 0);
         protected Matrix[] transforms;
         private float scale = 5.0f;
@@ -56,7 +58,9 @@ namespace Libraries
         public float XPos { get { return modelPosition.X; } set { modelPosition.X = value; } }
         public float YPos { get { return modelPosition.Y; } set { modelPosition.Y = value; } }
         public float ZPos { get { return modelPosition.Z; } set { modelPosition.Z = value; } }
-        public float Rotation { get { return modelRotation; } set { modelRotation = value; } }
+        public float XRot { get { return modelRotationX; } set { modelRotationX = value; } }
+        public float YRot { get { return modelRotationY; } set { modelRotationY = value; } }
+        public float ZRot { get { return modelRotationZ; } set { modelRotationZ = value; } }
         public float Scalecale { get { return scale; } set { scale = value; } }
         public Vector2 Size { get { return modelSize; } set { modelSize = value; } }
         public float XSize { get { return modelSize.X; } set { modelSize.X = value; } }
@@ -103,10 +107,12 @@ namespace Libraries
         /// <param name="assetName">The name of the asset for this model</param>
         public AnimatedModel() { }
         
-        public AnimatedModel(Vector3 position, float rotation = 5.0f)
+        public AnimatedModel(Vector3 position, float xRot = 0.0f, float yRot = 0.0f, float zRot = 0.0f)
         {
-            Position = position;
-            Rotation = rotation;
+            this.modelPosition = position;
+            this.modelRotationX = xRot;
+            this.modelRotationY = yRot;
+            this.modelRotationZ = zRot;
         }
 
         /// <summary>
@@ -201,17 +207,18 @@ namespace Libraries
         /// </summary>
         /// <param name="graphics">The graphics device to draw on</param>
         /// <param name="camera">A camera to determine the view</param>
-        /// <param name="world">A world matrix to place the model</param>
-        public void Draw(GraphicsDevice graphics, Camera camera, Matrix world)
+        public void Draw(GraphicsDevice graphics, Camera camera)
         {
             if (model == null)
                 return;
 
+            world = Matrix.CreateScale(scale) * Matrix.CreateRotationX(modelRotationX) *
+                Matrix.CreateRotationY(modelRotationY) * Matrix.CreateRotationZ(modelRotationZ)
+                        * Matrix.CreateTranslation(modelPosition);
+
             //
             // Compute all of the bone absolute transforms
             //
-            world = Matrix.CreateScale(scale) * Matrix.CreateRotationY(modelRotation)
-                        * Matrix.CreateTranslation(modelPosition);
 
             Matrix[] boneTransforms = new Matrix[bones.Count];
 

@@ -55,7 +55,7 @@ namespace TurkeySmash
 
         protected override void Update(GameTime gameTime)
         {
-            Basic.Update(input1);
+            Basic.Update(gameTime, input1);
             if (Basic.screens.Count < 1)
                 this.Exit();
 

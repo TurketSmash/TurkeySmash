@@ -23,9 +23,9 @@ namespace Libraries
         public Joueur(PlayerIndex Player, float rotation = 0, int life = 5)
         {
             if (rotation == 0)
-                Rotation = MathHelper.ToRadians(90);
+                YRot = MathHelper.ToRadians(90);
             else
-                Rotation = rotation;
+                YRot = rotation;
             base.Player = Player;
             this.input = new Input(Player);
             base.Life = life;

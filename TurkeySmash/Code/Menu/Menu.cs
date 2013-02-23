@@ -26,7 +26,7 @@ namespace TurkeySmash
 
         public Menu() { }
 
-        public override void Update(Input input)
+        public override void Update(GameTime gameTime, Input input)
         {
 
             soundSelect = TurkeySmashGame.content.Load<SoundEffect>("Sons\\menuSelect");
