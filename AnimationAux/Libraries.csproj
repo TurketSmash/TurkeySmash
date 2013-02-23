@@ -103,6 +103,7 @@
     <Compile Include="Animation\ModelExtraReader.cs" />
     <Compile Include="Divers\Input.cs" />
     <Compile Include="Level\Level.cs" />
+    <Compile Include="Level\LevelReader.cs" />
     <Compile Include="Personnage\IA.cs" />
     <Compile Include="Personnage\Joueur.cs" />
     <Compile Include="Personnage\Personnage.cs" />

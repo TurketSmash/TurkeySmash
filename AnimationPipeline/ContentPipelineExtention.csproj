@@ -52,6 +52,9 @@
     <Compile Include="Animation\AnimationClipWriter.cs" />
     <Compile Include="Animation\ModelExtraWriter.cs" />
     <Compile Include="Animation\AnimationProcessor.cs" />
+    <Compile Include="Level\LevelImporter.cs" />
+    <Compile Include="Level\LevelProcessor.cs" />
+    <Compile Include="Level\LevelWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
