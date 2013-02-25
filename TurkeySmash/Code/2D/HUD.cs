@@ -25,7 +25,6 @@ namespace TurkeySmash
                 pourcentages[i].SizeText = 1.0f;
                 i++;
             }
-
             pourcentages[0].Color = Color.Red;
         }
 

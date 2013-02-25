@@ -35,11 +35,21 @@ namespace Libraries
             this.elements = elements;
             Position = Vector3.Zero;
             spawnPoints[0] = new Vector3(1450, 1000, 0);
-            spawnPoints[1] = new Vector3(-1450, 1000, 0);
+            spawnPoints[1] = new Vector3(-1000, 2000, 0);
             Init();
-            GlobalHitBoxesList.Add(new Rectangle(-1825, -150, 3650, 150));
-            GlobalHitBoxesList.Add(new Rectangle(-750, 0, 850, 250));
-            GlobalHitBoxesList.Add(new Rectangle(400, 450, 725, 50));
+            if (backgroundName == "Jeu\\space")
+            {
+                GlobalHitBoxesList.Add(new Rectangle(-1825, -150, 3650, 150));
+                GlobalHitBoxesList.Add(new Rectangle(-750, 0, 850, 250));
+                GlobalHitBoxesList.Add(new Rectangle(400, 450, 725, 50));
+            }
+            else
+            {
+                GlobalHitBoxesList.Add(new Rectangle(-1550, -50, 110, 150));
+                GlobalHitBoxesList.Add(new Rectangle(-1500, -100, 28, 125));
+                GlobalHitBoxesList.Add(new Rectangle(1530, 75, 780, 15));
+                GlobalHitBoxesList.Add(new Rectangle(-550, 570, 1000, 30));
+            }
             background = new Sprite();
             background.Load(content, backgroundName);
             Load(content, levelName);
@@ -50,7 +60,16 @@ namespace Libraries
             foreach(Personnage player in elements)
             {
                 int i = 0;
-                player.Init(spawnPoints[i]);
+                if (i == 0)
+                {
+                    player.Init(spawnPoints[i]);
+                    player.Position = spawnPoints[0];
+                }
+                else
+                {
+                    player.Init(spawnPoints[i]);
+                    player.Position = spawnPoints[1];
+                }
                 i++;
             }
         }

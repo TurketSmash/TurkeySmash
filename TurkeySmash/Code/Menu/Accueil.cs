@@ -14,6 +14,7 @@ namespace TurkeySmash
         private BoutonTexte bouton3;
         private BoutonTexte bouton4;
         private SoundEffect soundByebye;
+        public static string modeDeJeu;
 
         #endregion
 
@@ -38,7 +39,7 @@ namespace TurkeySmash
             Song song = TurkeySmashGame.content.Load<Song>("Sons\\musique1");
             MediaPlayer.Volume = 0.5f;
             MediaPlayer.IsRepeating = true;
-            //MediaPlayer.Play(song);
+            MediaPlayer.Play(song);
             backgroundMenu.Load(TurkeySmashGame.content, "Menu\\MenuPrincipal");
             bouton1.Load(TurkeySmashGame.content, boutons);
             bouton2.Load(TurkeySmashGame.content, boutons);
@@ -51,15 +52,14 @@ namespace TurkeySmash
 
         public override void Bouton1()
         {
+            modeDeJeu = "1j";
             Basic.SetScreen(new SelectionPersonnage());
         }
 
         public override void Bouton2()
         {
+            modeDeJeu = "2j";
             Basic.SetScreen(new SelectionPersonnage());
-            Basic.SetScreen(new SelectionNiveau());
-            MediaPlayer.Pause();
-            Basic.SetScreen(new Multi());
         }
 
         public override void Bouton3()

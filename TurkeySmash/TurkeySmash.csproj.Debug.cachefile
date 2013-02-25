@@ -6,11 +6,14 @@ Content\Menu\MenuPause.xnb
 Content\Menu\Farm Space.xnb
 Content\Defaut.xnb
 Content\Menu\perso1.xnb
+Content\Menu\thecity.xnb
+Content\Jeu\citybackground.xnb
 Content\SuperMario.xnb
 Content\Pourcent.xnb
 Content\Models\farm.xnb
 Content\Models\dude-walk.xnb
 Content\Models\dude.xnb
+Content\Models\MapCity2.xnb
 Content\Sons\byebye.xnb
 Content\Sons\latch_1.xnb
 Content\Sons\menuSelect.xnb
@@ -29,4 +32,10 @@ Content\head_0.xnb
 Content\jacket_0.xnb
 Content\pants_0.xnb
 Content\upBodyC_0.xnb
+Content\Models\Textures\game-model-texture-barrel-001_0.xnb
+Content\Models\Textures\MetalPlates_0.xnb
+Content\Models\Textures\BatD_0.xnb
+Content\Models\Textures\BatG_0.xnb
+Content\Models\Textures\BrickWall_0.xnb
+Content\Models\Textures\Plateforme_0.xnb
 Content\Sons\musique1.wma

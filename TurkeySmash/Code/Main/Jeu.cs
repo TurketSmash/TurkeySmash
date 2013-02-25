@@ -50,15 +50,11 @@ namespace TurkeySmash
             elements.Add(model);
             #endregion
 
-            //if (SelectionPersonnage.persoSelect == "soldat")
-            //    players[0].Load(TurkeySmashGame.content, "Models\\dude", elements);
-            //else
-            //    players[0].Load(TurkeySmashGame.content, "Models\\dude", elements);
-            level = new Level("Jeu\\space", "Models\\farm", elements, TurkeySmashGame.content);
-            //if (SelectionNiveau.niveauSelect == "spacefarm")
-            //    level.Load(TurkeySmashGame.content, "Models\\farm");
-            //else
-            //    level.Load(TurkeySmashGame.content, "Models\\building");
+            if (SelectionNiveau.niveauSelect == "spacefarm")
+                level = new Level("Jeu\\space", "Models\\farm", elements, TurkeySmashGame.content);
+            else
+                level = new Level("Jeu\\citybackground", "Models\\MapCity2", elements, TurkeySmashGame.content);
+
             hud.Load(elements);
             camera.Initialize();
 
@@ -76,7 +72,7 @@ namespace TurkeySmash
             camera.Update(TurkeySmashGame.manager.GraphicsDevice, gameTime);
 
             level.Update(gameTime);
-            hud.Update(elements);
+            //hud.Update(elements);
             sonInstance.Resume();
 
             //

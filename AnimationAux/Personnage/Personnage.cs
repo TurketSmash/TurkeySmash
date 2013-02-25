@@ -49,10 +49,10 @@ namespace Libraries
         {
             if (velocityY == 0)
             {
-                velocityX += 2.0f;
+                velocityX += 1.0f;
                 if (player != null)
                 {
-                    player.Update(gameTime, 2.0f);
+                    player.Update(gameTime, 1.5f);
                 }
                 YRot = 3.14f;  // rotation 180
             }
@@ -64,10 +64,10 @@ namespace Libraries
         {
             if (velocityY == 0)
             {
-                velocityX += -2.0f;
+                velocityX += -1.0f;
                 if (player != null)
                 {
-                    player.Update(gameTime, 2.0f);
+                    player.Update(gameTime, 1.5f);
                 }
                 YRot = 0.0f;
             }

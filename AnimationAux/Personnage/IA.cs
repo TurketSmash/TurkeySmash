@@ -29,6 +29,7 @@ namespace Libraries
 
         public override void Update(GameTime gameTime)
         {
+            
             //if (Multi.players[0].XPos > base.XPos)
             //    base.Right();
             //else if (Multi.players[0].XPos < base.XPos)

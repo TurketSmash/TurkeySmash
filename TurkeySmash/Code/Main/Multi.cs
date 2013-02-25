@@ -14,10 +14,12 @@ namespace TurkeySmash
     {
         #region Fields
 
-        private Sprite background;
         private Camera camera;
+        private AnimatedModel model;
+        private AnimatedModel walk;
+        private Level level;
+        private List<Personnage> players = new List<Personnage>();
         private List<AnimatedModel> elements = new List<AnimatedModel>();
-        private GameTime gameTime;
         private HUD hud = new HUD();
         public static SoundEffect sonEspace = TurkeySmashGame.content.Load<SoundEffect>("Sons\\sonEspace");
         public SoundEffectInstance sonInstance = sonEspace.CreateInstance();
@@ -28,22 +30,44 @@ namespace TurkeySmash
 
         public Multi()
         {
-            gameTime = new GameTime();
             state = SceneState.Active;
         }
 
         public override void Init()
         {
-            camera = new Camera(TurkeySmashGame.manager);
-            background = new Sprite();
-            //players.Add(new Joueur(PlayerIndex.One));
-            //players.Add(new IA(PlayerIndex.Two));
-            background.Load(TurkeySmashGame.content, "Jeu\\space");
-            //players[0].Load(TurkeySmashGame.content, "Models\\dude", elements);
-            //players[0].Size = new Vector2(50, 375);
-            //players[1].Load(TurkeySmashGame.content, "Models\\dude", elements);
-            //players[1].Size = new Vector2(80, 400);
-            //level.Load(TurkeySmashGame.content, "Models\\farm");
+            camera = new Libraries.Camera(TurkeySmashGame.manager);
+
+            #region player1
+            model = new Joueur(PlayerIndex.Two, MathHelper.ToRadians(-90), MathHelper.ToRadians(180));
+            model.Load("Models\\dude", TurkeySmashGame.content);
+            walk = new AnimatedModel();
+            walk.Load("Models\\dude-walk", TurkeySmashGame.content);
+            AnimationClip clip1 = walk.Clips[0];
+            AnimationPlayer player1 = model.PlayClip(clip1);
+            player1.Looping = true;
+            model.Size = new Vector2(50, 350);
+
+            elements.Add(model);
+            #endregion
+
+            #region player2
+            model = new Joueur(PlayerIndex.Two, MathHelper.ToRadians(-90), MathHelper.ToRadians(180));
+            model.Load("Models\\dude", TurkeySmashGame.content);
+            walk = new AnimatedModel();
+            walk.Load("Models\\dude-walk", TurkeySmashGame.content);
+            AnimationClip clip2 = walk.Clips[0];
+            AnimationPlayer player2 = model.PlayClip(clip2);
+            player2.Looping = true;
+            model.Size = new Vector2(50, 350);
+
+            elements.Add(model);
+            #endregion
+
+            if (SelectionNiveau.niveauSelect == "spacefarm")
+                level = new Level("Jeu\\space", "Models\\farm", elements, TurkeySmashGame.content);
+            else
+                level = new Level("Jeu\\citybackground", "Models\\MapCity2", elements, TurkeySmashGame.content);
+
             hud.Load(elements);
             camera.Initialize();
 
@@ -59,8 +83,9 @@ namespace TurkeySmash
         public override void Update(GameTime gameTime, Input input)
         {
             camera.Update(TurkeySmashGame.manager.GraphicsDevice, gameTime);
-            //level.Update();
-            hud.Update(elements);
+
+            level.Update(gameTime);
+            //hud.Update(elements);
             sonInstance.Resume();
 
             //
@@ -85,14 +110,14 @@ namespace TurkeySmash
         {
             if (state == SceneState.Active)
             {
-                TurkeySmashGame.manager.GraphicsDevice.BlendState = BlendState.Opaque; //rendre les textures opaques
+                level.Draw(TurkeySmashGame.spriteBatch, TurkeySmashGame.manager.GraphicsDevice, camera);
+                TurkeySmashGame.manager.GraphicsDevice.BlendState = BlendState.Opaque; 
                 TurkeySmashGame.manager.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
 
-                //level.Draw(camera);
-                //foreach (AnimatedModel element in elements)
-                //{
-                //    element.Draw(camera);
-                //}
+                foreach (AnimatedModel element in elements)
+                {
+                    element.Draw(TurkeySmashGame.manager.GraphicsDevice, camera);
+                }
 
                 hud.Draw();
             }
