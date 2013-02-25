@@ -50,7 +50,7 @@ namespace Libraries
             foreach(Personnage player in elements)
             {
                 int i = 0;
-                player.Position = spawnPoints[i];
+                player.Init(spawnPoints[i]);
                 i++;
             }
         }

@@ -10,7 +10,7 @@ namespace Libraries
     {
         #region Fields
 
-        private PlayerIndex player = PlayerIndex.One;
+        private PlayerIndex playerNum = PlayerIndex.One;
         private int percent = 0;
         private int life;
         protected bool isJumping = false;
@@ -24,7 +24,7 @@ namespace Libraries
         /// <summary>
         /// PlayerIndex représente le numéro du joueur et le controle de la manette.
         /// </summary>
-        public PlayerIndex Player { get { return player; } set { player = value; } }
+        public PlayerIndex Player { get { return playerNum; } set { playerNum = value; } }
         public int Life { get { return life; } set { life = value; } }
         public int Percent { get { return percent; } set { percent = value; } }
         /// <summary>
@@ -37,6 +37,10 @@ namespace Libraries
         public void Init(Vector3 positionSpawn)
         {
             Position = positionSpawn;
+            if (XPos > 0)
+                YRot = 0.0f;
+            else
+                YRot = 3.14f;
         }
 
         #region deplacement
@@ -44,7 +48,11 @@ namespace Libraries
         protected void Right()
         {
             if (velocityY == 0)
+            {
                 velocityX += 2.0f;
+                player.Position = velocityX;
+                YRot = 3.14f;  // rotation 180
+            }
             else
                 XPos += 6.0f;
         }
@@ -52,7 +60,11 @@ namespace Libraries
         protected void Left()
         {
             if (velocityY == 0)
+            {
                 velocityX += -2.0f;
+                player.Position = velocityX;
+                YRot = 0.0f;
+            }
             else
                 XPos -= 6.0f;
         }

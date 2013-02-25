@@ -61,7 +61,7 @@ namespace Libraries
             set
             {
                 if (value > Duration)
-                    value = Duration;
+                    value = 0;
 
                 position = value;
                 foreach (BoneInfo bone in boneInfos)

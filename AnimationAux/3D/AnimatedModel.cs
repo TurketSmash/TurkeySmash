@@ -21,7 +21,7 @@ namespace Libraries
         private Model model = null;
         private ModelExtra modelExtra = null;
         private List<Bone> bones = new List<Bone>();
-        private AnimationPlayer player = null;
+        protected AnimationPlayer player = null;
         private float modelRotationX = 0.0f;
         private float modelRotationY = 0.0f;
         private float modelRotationZ = 0.0f;
@@ -80,7 +80,6 @@ namespace Libraries
                     velocity.X = -30.0f;
             }
         }
-
         public float velocityY
         {
             get
@@ -192,6 +191,9 @@ namespace Libraries
         /// <param name="gameTime"></param>
         public virtual void Update(GameTime gameTime)
         {
+            XPos += velocity.X;
+            YPos += velocity.Y;
+            Gravity.Pesenteur(ref velocity.Y);
             if (player != null)
             {
                 player.Update(gameTime);
@@ -200,7 +202,7 @@ namespace Libraries
 
         public Rectangle HitBox()
         {
-            hitbox = new Rectangle((int)(XPos - (modelSize.X / 2)), (int)YPos, (int)modelSize.X, (int)modelSize.Y);
+            hitbox = new Rectangle((int)(XPos - (modelSize.X / 2)), (int)(YPos - (modelSize.Y / 2)), (int)modelSize.X, (int)modelSize.Y);
             return hitbox;
         }
 

@@ -25,7 +25,7 @@ namespace Libraries
                     if (rect.Bottom > objet.HitBox().Top && rect.Bottom < objet.HitBox().Bottom)
                     {
                         objet.velocityY = 0;
-                        objet.YPos = rect.Bottom;
+                        objet.YPos = rect.Bottom + (objet.YSize / 2);
                     }
 
                     if (rect.Top < objet.HitBox().Bottom && rect.Top > objet.HitBox().Top)
