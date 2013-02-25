@@ -61,7 +61,7 @@ namespace Libraries
             set
             {
                 if (value > Duration)
-                    value = 0;
+                    value = Duration;
 
                 position = value;
                 foreach (BoneInfo bone in boneInfos)
@@ -142,9 +142,9 @@ namespace Libraries
         /// Update the clip position
         /// </summary>
         /// <param name="delta"></param>
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, float speed)
         {
-            Position = Position + (float)gameTime.ElapsedGameTime.TotalSeconds;
+            Position = Position + ((float)gameTime.ElapsedGameTime.TotalSeconds * speed);
             if (looping && Position >= Duration)
                 Position = 0;
         }

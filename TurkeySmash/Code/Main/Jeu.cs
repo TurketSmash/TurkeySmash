@@ -44,6 +44,7 @@ namespace TurkeySmash
             walk.Load("Models\\dude-walk", TurkeySmashGame.content);
             AnimationClip clip = walk.Clips[0];
             AnimationPlayer player = model.PlayClip(clip);
+            player.Looping = true;
             model.Size = new Vector2(50, 350);
 
             elements.Add(model);

@@ -36,10 +36,10 @@ namespace Libraries
         {
             input.Update();
             if (input.Right())
-                base.Right();
+                base.Right(gameTime);
             else 
                 if (input.Left())
-                    base.Left();
+                    base.Left(gameTime);
                 else
                     velocityX = 0;
 

@@ -194,10 +194,6 @@ namespace Libraries
             XPos += velocity.X;
             YPos += velocity.Y;
             Gravity.Pesenteur(ref velocity.Y);
-            if (player != null)
-            {
-                player.Update(gameTime);
-            }
         }
 
         public Rectangle HitBox()

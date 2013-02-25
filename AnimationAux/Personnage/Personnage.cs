@@ -45,24 +45,30 @@ namespace Libraries
 
         #region deplacement
 
-        protected void Right()
+        protected void Right(GameTime gameTime)
         {
             if (velocityY == 0)
             {
                 velocityX += 2.0f;
-                player.Position = velocityX;
+                if (player != null)
+                {
+                    player.Update(gameTime, 2.0f);
+                }
                 YRot = 3.14f;  // rotation 180
             }
             else
                 XPos += 6.0f;
         }
 
-        protected void Left()
+        protected void Left(GameTime gameTime)
         {
             if (velocityY == 0)
             {
                 velocityX += -2.0f;
-                player.Position = velocityX;
+                if (player != null)
+                {
+                    player.Update(gameTime, 2.0f);
+                }
                 YRot = 0.0f;
             }
             else
