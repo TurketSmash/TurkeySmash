@@ -17,31 +17,29 @@ namespace Libraries
 {
     public class IA : Personnage
     {
-        public IA(PlayerIndex Player, float rotation = 0.0f, int life = 5)
+        public Vector3 targetPosition = Vector3.Zero;
+        public IA(PlayerIndex Player, float xRot = 0.0f, float yRot = 0.0f, float zRot = 0.0f, int life = 5)
         {
-            if (rotation == 0)
-                YRot = MathHelper.ToRadians(90);
-            else
-                YRot = rotation;
             base.Player = Player;
             base.Life = life;
+            this.XRot = xRot;
+            this.YRot = yRot;
+            this.ZRot = zRot;
         }
 
         public override void Update(GameTime gameTime)
         {
-            
-            //if (Multi.players[0].XPos > base.XPos)
-            //    base.Right();
-            //else if (Multi.players[0].XPos < base.XPos)
-            //    base.Left();
-            //else
-            //    base.velocityX = 0;
+            if (targetPosition.X > base.XPos)
+                base.Right(gameTime);
+            else if (targetPosition.X < base.XPos)
+                base.Left(gameTime);
+            else
+                base.velocityX = 0;
 
-            //if (Multi.players[0].YPos > base.YPos)
-            //base.Jump();
+            if (targetPosition.Y > base.YPos)
+                base.Jump();
 
-            //base.Update();
+            base.Update(gameTime);
         }
-
     }
 }

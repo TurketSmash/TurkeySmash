@@ -74,10 +74,10 @@ namespace Libraries
             set
             {
                 velocity.X = value;
-                if (velocity.X > 30.0f)
-                    velocity.X = 30.0f;
-                else if (velocity.X < -30.0f)
-                    velocity.X = -30.0f;
+                if (velocity.X > 2.0f)
+                    velocity.X = 20.0f;
+                else if (velocity.X < -20.0f)
+                    velocity.X = -20.0f;
             }
         }
         public float velocityY

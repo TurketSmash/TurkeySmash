@@ -34,8 +34,11 @@ namespace Libraries
         {
             this.elements = elements;
             Position = Vector3.Zero;
-            spawnPoints[0] = new Vector3(1450, 1000, 0);
-            spawnPoints[1] = new Vector3(-1000, 2000, 0);
+            spawnPoints[0] = new Vector3(1200, 0, 0);
+            spawnPoints[1] = new Vector3(-1300, 0, 0);
+            spawnPoints[2] = new Vector3(700, 0, 0);
+            spawnPoints[3] = new Vector3(700, 0, 0);
+
             Init();
             if (backgroundName == "Jeu\\space")
             {
@@ -45,8 +48,7 @@ namespace Libraries
             }
             else
             {
-                GlobalHitBoxesList.Add(new Rectangle(-1550, -50, 110, 150));
-                GlobalHitBoxesList.Add(new Rectangle(-1500, -100, 28, 125));
+                GlobalHitBoxesList.Add(new Rectangle(-1500, -50, 2800, 50));
                 GlobalHitBoxesList.Add(new Rectangle(1530, 75, 780, 15));
                 GlobalHitBoxesList.Add(new Rectangle(-550, 570, 1000, 30));
             }
@@ -57,19 +59,10 @@ namespace Libraries
 
         public void Init()
         {
+            int i = 0;
             foreach(Personnage player in elements)
             {
-                int i = 0;
-                if (i == 0)
-                {
-                    player.Init(spawnPoints[i]);
-                    player.Position = spawnPoints[0];
-                }
-                else
-                {
-                    player.Init(spawnPoints[i]);
-                    player.Position = spawnPoints[1];
-                }
+                player.Init(spawnPoints[i]);
                 i++;
             }
         }
@@ -87,8 +80,14 @@ namespace Libraries
 
         public void Update(GameTime gameTime)
         {
+
             foreach (AnimatedModel objet in elements)
             {
+                if (objet is IA)
+                {
+                    IA buffer = (IA)objet;
+                    buffer.targetPosition = elements[0].Position;     // CODE GROS PORC SPECIAL SOUTENANCE 
+                }                                                                       // CHRIS BOULE
                 objet.Update(gameTime);
                 Collision.CheckHitBoxe(GlobalHitBoxesList, objet);
             }
@@ -100,6 +99,12 @@ namespace Libraries
                     Respawn(personnage);
                 }
             }
+
+            if (Partieterminee(elements))
+            {
+                // TODO
+            }
+
         }
 
 
@@ -113,7 +118,7 @@ namespace Libraries
 
         public void Respawn(Personnage personnage)
         {
-            if ((personnage.Mort == false))
+            if ((!personnage.Mort))
             {
                 personnage.Position = positionRespawn;
                 personnage.Life--;
@@ -124,11 +129,25 @@ namespace Libraries
 
 
 
-        public void Update(Personnage personnage)
+        /// <summary>
+        /// Retourne vrai si la partie est terminée 
+        /// </summary>
+        public bool Partieterminee(List<AnimatedModel> models)
         {
-            if (IsOutScreen(personnage))
-                Respawn(personnage);
+            int i = 0; // compte de nombre de mort
+            int j = 0; // compte de nombre de personnage 
+            foreach (Personnage player in models)
+            {
+                j++;
+                if (player.Mort)
+                    i++;
+            }
+
+            return i > j - 2; // si le nombre de mort est supérieur ou egal a 1 vivant 
         }
+
+
+
 
         public void Draw(SpriteBatch spriteBatch, GraphicsDevice device, Camera camera) // Meme methode que Element3D sans rotation ni translation
         {

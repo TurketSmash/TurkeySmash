@@ -15,10 +15,10 @@ namespace TurkeySmash
         #region Fields
 
         private Camera camera;
-        private AnimatedModel model;
+        private Joueur dude1;
+        private Joueur dude2;
         private AnimatedModel walk;
         private Level level;
-        private List<Personnage> players = new List<Personnage>();
         private List<AnimatedModel> elements = new List<AnimatedModel>();
         private HUD hud = new HUD();
         public static SoundEffect sonEspace = TurkeySmashGame.content.Load<SoundEffect>("Sons\\sonEspace");
@@ -38,29 +38,29 @@ namespace TurkeySmash
             camera = new Libraries.Camera(TurkeySmashGame.manager);
 
             #region player1
-            model = new Joueur(PlayerIndex.Two, MathHelper.ToRadians(-90), MathHelper.ToRadians(180));
-            model.Load("Models\\dude", TurkeySmashGame.content);
+            dude1 = new Joueur(PlayerIndex.Two, MathHelper.ToRadians(-90), MathHelper.ToRadians(180));
+            dude1.Load("Models\\dude", TurkeySmashGame.content);
             walk = new AnimatedModel();
             walk.Load("Models\\dude-walk", TurkeySmashGame.content);
             AnimationClip clip1 = walk.Clips[0];
-            AnimationPlayer player1 = model.PlayClip(clip1);
+            AnimationPlayer player1 = dude1.PlayClip(clip1);
             player1.Looping = true;
-            model.Size = new Vector2(50, 350);
+            dude1.Size = new Vector2(50, 350);
 
-            elements.Add(model);
+            elements.Add(dude1);
             #endregion
 
             #region player2
-            model = new Joueur(PlayerIndex.Two, MathHelper.ToRadians(-90), MathHelper.ToRadians(180));
-            model.Load("Models\\dude", TurkeySmashGame.content);
+            dude2 = new Joueur(PlayerIndex.Two, MathHelper.ToRadians(-90), MathHelper.ToRadians(180));
+            dude2.Load("Models\\dude", TurkeySmashGame.content);
             walk = new AnimatedModel();
             walk.Load("Models\\dude-walk", TurkeySmashGame.content);
             AnimationClip clip2 = walk.Clips[0];
-            AnimationPlayer player2 = model.PlayClip(clip2);
+            AnimationPlayer player2 = dude2.PlayClip(clip2);
             player2.Looping = true;
-            model.Size = new Vector2(50, 350);
+            dude2.Size = new Vector2(50, 350);
 
-            elements.Add(model);
+            elements.Add(dude2);
             #endregion
 
             if (SelectionNiveau.niveauSelect == "spacefarm")
@@ -85,15 +85,8 @@ namespace TurkeySmash
             camera.Update(TurkeySmashGame.manager.GraphicsDevice, gameTime);
 
             level.Update(gameTime);
-            //hud.Update(elements);
+            hud.Update(elements);
             sonInstance.Resume();
-
-            //
-            // fin de partie
-            // si les joueurs sont morts, alors le dernier est vainqueurs et la partie est terminée.
-            // les joueurs sont stockés dans une liste : players de type Player 
-            // la mort du personnage se vérifié grace à la Propriété "Mort" (bool).
-            //
 
             if (input.Escape())
             {

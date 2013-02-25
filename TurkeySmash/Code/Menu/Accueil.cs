@@ -39,7 +39,7 @@ namespace TurkeySmash
             Song song = TurkeySmashGame.content.Load<Song>("Sons\\musique1");
             MediaPlayer.Volume = 0.5f;
             MediaPlayer.IsRepeating = true;
-            MediaPlayer.Play(song);
+            //MediaPlayer.Play(song);
             backgroundMenu.Load(TurkeySmashGame.content, "Menu\\MenuPrincipal");
             bouton1.Load(TurkeySmashGame.content, boutons);
             bouton2.Load(TurkeySmashGame.content, boutons);

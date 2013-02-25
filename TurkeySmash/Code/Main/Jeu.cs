@@ -15,7 +15,8 @@ namespace TurkeySmash
         #region Fields
 
         private Camera camera;
-        private AnimatedModel model;
+        private Joueur model;
+        private IA dude2;
         private AnimatedModel walk;
         private Level level;
         private List<Personnage> players = new List<Personnage>();
@@ -50,6 +51,19 @@ namespace TurkeySmash
             elements.Add(model);
             #endregion
 
+            #region IA1
+            dude2 = new IA(PlayerIndex.Two, MathHelper.ToRadians(-90), MathHelper.ToRadians(180));
+            dude2.Load("Models\\dude", TurkeySmashGame.content);
+            walk = new AnimatedModel();
+            walk.Load("Models\\dude-walk", TurkeySmashGame.content);
+            AnimationClip clip2 = walk.Clips[0];
+            AnimationPlayer player2 = dude2.PlayClip(clip2);
+            player2.Looping = true;
+            dude2.Size = new Vector2(50, 350);
+
+            elements.Add(dude2);
+            #endregion
+
             if (SelectionNiveau.niveauSelect == "spacefarm")
                 level = new Level("Jeu\\space", "Models\\farm", elements, TurkeySmashGame.content);
             else
@@ -72,7 +86,7 @@ namespace TurkeySmash
             camera.Update(TurkeySmashGame.manager.GraphicsDevice, gameTime);
 
             level.Update(gameTime);
-            //hud.Update(elements);
+            hud.Update(elements);
             sonInstance.Resume();
 
             //
