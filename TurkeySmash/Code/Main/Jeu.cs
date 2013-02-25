@@ -59,7 +59,7 @@ namespace TurkeySmash
             //    level.Load(TurkeySmashGame.content, "Models\\farm");
             //else
             //    level.Load(TurkeySmashGame.content, "Models\\building");
-            //hud.Load(players);
+            hud.Load(elements);
             camera.Initialize();
 
             sonInstance.Volume = 0.5f;
@@ -74,13 +74,9 @@ namespace TurkeySmash
         public override void Update(GameTime gameTime, Input input)
         {
             camera.Update(TurkeySmashGame.manager.GraphicsDevice, gameTime);
-            foreach (AnimatedModel element in elements)
-            {
-                element.Update(gameTime);
-            }
 
-            //level.Update();
-            //hud.Update(players);
+            level.Update(gameTime);
+            hud.Update(elements);
             sonInstance.Resume();
 
             //
@@ -114,7 +110,7 @@ namespace TurkeySmash
                     element.Draw(TurkeySmashGame.manager.GraphicsDevice, camera);
                 }
 
-                //hud.Draw();
+                hud.Draw();
             }
         }
 

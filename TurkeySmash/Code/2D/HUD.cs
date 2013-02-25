@@ -12,7 +12,7 @@ namespace TurkeySmash
 
         public HUD() { }
 
-        public void Load(List<Personnage> players)
+        public void Load(List<AnimatedModel> players)
         {
             int i = 0;
             playersCount = players.Count;
@@ -29,12 +29,12 @@ namespace TurkeySmash
             pourcentages[0].Color = Color.Red;
         }
 
-        public void Update(List<Personnage> players)
+        public void Update(List<AnimatedModel> players)
         {
             int i = 0;
             foreach (Personnage player in players)
             {
-                pourcentages[i].Texte = Convert.ToString(players[i].Percent) + " %";
+                pourcentages[i].Texte = Convert.ToString(player.Percent) + " %";
                 i++;
             }
         }

@@ -16,7 +16,6 @@ namespace TurkeySmash
 
         private Sprite background;
         private Camera camera;
-        public static List<Personnage> players = new List<Personnage>();
         private List<AnimatedModel> elements = new List<AnimatedModel>();
         private GameTime gameTime;
         private HUD hud = new HUD();
@@ -37,15 +36,15 @@ namespace TurkeySmash
         {
             camera = new Camera(TurkeySmashGame.manager);
             background = new Sprite();
-            players.Add(new Joueur(PlayerIndex.One));
-            players.Add(new IA(PlayerIndex.Two));
+            //players.Add(new Joueur(PlayerIndex.One));
+            //players.Add(new IA(PlayerIndex.Two));
             background.Load(TurkeySmashGame.content, "Jeu\\space");
             //players[0].Load(TurkeySmashGame.content, "Models\\dude", elements);
             //players[0].Size = new Vector2(50, 375);
             //players[1].Load(TurkeySmashGame.content, "Models\\dude", elements);
             //players[1].Size = new Vector2(80, 400);
             //level.Load(TurkeySmashGame.content, "Models\\farm");
-            hud.Load(players);
+            hud.Load(elements);
             camera.Initialize();
 
             sonInstance.Volume = 0.5f;
@@ -61,7 +60,7 @@ namespace TurkeySmash
         {
             camera.Update(TurkeySmashGame.manager.GraphicsDevice, gameTime);
             //level.Update();
-            hud.Update(players);
+            hud.Update(elements);
             sonInstance.Resume();
 
             //
@@ -86,12 +85,6 @@ namespace TurkeySmash
         {
             if (state == SceneState.Active)
             {
-                TurkeySmashGame.spriteBatch.Begin();
-
-                background.Draw(TurkeySmashGame.spriteBatch);
-
-                TurkeySmashGame.spriteBatch.End();
-
                 TurkeySmashGame.manager.GraphicsDevice.BlendState = BlendState.Opaque; //rendre les textures opaques
                 TurkeySmashGame.manager.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
 
