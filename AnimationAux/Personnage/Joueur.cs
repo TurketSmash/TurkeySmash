@@ -14,21 +14,20 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Libraries
 {
-    class Joueur : Personnage
+    public class Joueur : Personnage
     {
         private Input input;
 
         #region Construction
 
-        public Joueur(PlayerIndex Player, float rotation = 0, int life = 5)
+        public Joueur(PlayerIndex Player, float xRot = 0.0f, float yRot = 0.0f, float zRot = 0.0f, int life = 5)
         {
-            if (rotation == 0)
-                YRot = MathHelper.ToRadians(90);
-            else
-                YRot = rotation;
             base.Player = Player;
             this.input = new Input(Player);
             base.Life = life;
+            this.XRot = xRot;
+            this.YRot = yRot;
+            this.ZRot = zRot;
         }
 
         #endregion

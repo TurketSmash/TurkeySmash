@@ -198,6 +198,12 @@ namespace Libraries
             }
         }
 
+        public Rectangle HitBox()
+        {
+            hitbox = new Rectangle((int)(XPos - (modelSize.X / 2)), (int)YPos, (int)modelSize.X, (int)modelSize.Y);
+            return hitbox;
+        }
+
         #endregion
 
         #region Drawing

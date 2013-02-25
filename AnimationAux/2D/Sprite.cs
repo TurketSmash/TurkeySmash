@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Libraries
 {
-    class Sprite
+    public class Sprite
     {
         #region Fields 
 

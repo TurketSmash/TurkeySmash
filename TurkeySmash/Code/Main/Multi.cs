@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Audio;
+using Libraries;
 #endregion
 
 namespace TurkeySmash
@@ -15,9 +16,8 @@ namespace TurkeySmash
 
         private Sprite background;
         private Camera camera;
-        private Decor level;
         public static List<Personnage> players = new List<Personnage>();
-        private List<Element3D> elements = new List<Element3D>();
+        private List<AnimatedModel> elements = new List<AnimatedModel>();
         private GameTime gameTime;
         private HUD hud = new HUD();
         public static SoundEffect sonEspace = TurkeySmashGame.content.Load<SoundEffect>("Sons\\sonEspace");
@@ -40,12 +40,11 @@ namespace TurkeySmash
             players.Add(new Joueur(PlayerIndex.One));
             players.Add(new IA(PlayerIndex.Two));
             background.Load(TurkeySmashGame.content, "Jeu\\space");
-            players[0].Load(TurkeySmashGame.content, "Models\\dude", elements);
-            players[0].Size = new Vector2(50, 375);
-            players[1].Load(TurkeySmashGame.content, "Models\\dude", elements);
-            players[1].Size = new Vector2(80, 400);
-            level = new Decor(elements);
-            level.Load(TurkeySmashGame.content, "Models\\farm");
+            //players[0].Load(TurkeySmashGame.content, "Models\\dude", elements);
+            //players[0].Size = new Vector2(50, 375);
+            //players[1].Load(TurkeySmashGame.content, "Models\\dude", elements);
+            //players[1].Size = new Vector2(80, 400);
+            //level.Load(TurkeySmashGame.content, "Models\\farm");
             hud.Load(players);
             camera.Initialize();
 
@@ -61,7 +60,7 @@ namespace TurkeySmash
         public override void Update(GameTime gameTime, Input input)
         {
             camera.Update(TurkeySmashGame.manager.GraphicsDevice, gameTime);
-            level.Update();
+            //level.Update();
             hud.Update(players);
             sonInstance.Resume();
 
@@ -96,11 +95,11 @@ namespace TurkeySmash
                 TurkeySmashGame.manager.GraphicsDevice.BlendState = BlendState.Opaque; //rendre les textures opaques
                 TurkeySmashGame.manager.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
 
-                level.Draw(camera);
-                foreach (Element3D element in elements)
-                {
-                    element.Draw(camera);
-                }
+                //level.Draw(camera);
+                //foreach (AnimatedModel element in elements)
+                //{
+                //    element.Draw(camera);
+                //}
 
                 hud.Draw();
             }

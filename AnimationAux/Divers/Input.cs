@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Libraries
 {
-    class Input
+    public class Input
     {
         #region Fields
 

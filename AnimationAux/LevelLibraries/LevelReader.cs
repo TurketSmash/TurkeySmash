@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Libraries.Level
+namespace Libraries
 {
     class LevelReader
     {

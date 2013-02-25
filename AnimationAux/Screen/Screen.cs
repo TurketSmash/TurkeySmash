@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace Libraries
 {
-    class Screen
+    public class Screen
     {
         public enum SceneState
         {

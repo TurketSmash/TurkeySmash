@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ContentPipelineExtention.Level
+namespace Libraries
 {
-    class LevelWriter
+    class LevelReader
     {
     }
 }

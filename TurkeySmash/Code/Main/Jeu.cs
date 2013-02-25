@@ -14,13 +14,12 @@ namespace TurkeySmash
     {
         #region Fields
 
-        private Sprite background;
-        private Libraries.Camera camera;
+        private Camera camera;
         private AnimatedModel model;
         private AnimatedModel walk;
-        //private Decor level;
-        //private List<Personnage> players = new List<Personnage>();
-        //private List<Element3D> elements = new List<Element3D>();
+        private Level level;
+        private List<Personnage> players = new List<Personnage>();
+        private List<AnimatedModel> elements = new List<AnimatedModel>();
         private HUD hud = new HUD();
         public static SoundEffect sonEspace = TurkeySmashGame.content.Load<SoundEffect>("Sons\\sonEspace");
         public SoundEffectInstance sonInstance = sonEspace.CreateInstance();
@@ -37,23 +36,25 @@ namespace TurkeySmash
         public override void Init()
         {
             camera = new Libraries.Camera(TurkeySmashGame.manager);
-            background = new Sprite();
-            model = new AnimatedModel(new Vector3(0, 0, 0), MathHelper.ToRadians(-90), MathHelper.ToRadians(180));
+
+            #region player1
+            model = new Joueur(PlayerIndex.One, MathHelper.ToRadians(-90), MathHelper.ToRadians(180));
             model.Load("Models\\dude", TurkeySmashGame.content);
             walk = new AnimatedModel();
             walk.Load("Models\\dude-walk", TurkeySmashGame.content);
             AnimationClip clip = walk.Clips[0];
             AnimationPlayer player = model.PlayClip(clip);
             player.Looping = true;
+            model.Size = new Vector2(50, 375);
 
-            //players.Add(new Joueur(PlayerIndex.One));
-            background.Load(TurkeySmashGame.content, "Jeu\\space");
+            elements.Add(model);
+            #endregion
+
             //if (SelectionPersonnage.persoSelect == "soldat")
             //    players[0].Load(TurkeySmashGame.content, "Models\\dude", elements);
             //else
             //    players[0].Load(TurkeySmashGame.content, "Models\\dude", elements);
-            //players[0].Size = new Vector2(50, 375);
-            //level = new Decor(elements);
+            level = new Level("Jeu\\space", "Models\\farm", elements, TurkeySmashGame.content);
             //if (SelectionNiveau.niveauSelect == "spacefarm")
             //    level.Load(TurkeySmashGame.content, "Models\\farm");
             //else
@@ -73,7 +74,10 @@ namespace TurkeySmash
         public override void Update(GameTime gameTime, Input input)
         {
             camera.Update(TurkeySmashGame.manager.GraphicsDevice, gameTime);
-            model.Update(gameTime);
+            foreach (AnimatedModel element in elements)
+            {
+                element.Update(gameTime);
+            }
 
             //level.Update();
             //hud.Update(players);
@@ -101,21 +105,14 @@ namespace TurkeySmash
         {
             if (state == SceneState.Active)
             {
-                TurkeySmashGame.spriteBatch.Begin();
-
-                background.Draw(TurkeySmashGame.spriteBatch);
-
-                TurkeySmashGame.spriteBatch.End();
-
-                TurkeySmashGame.manager.GraphicsDevice.BlendState = BlendState.Opaque; //rendre les textures opaques
+                level.Draw(TurkeySmashGame.spriteBatch, TurkeySmashGame.manager.GraphicsDevice, camera);
+                TurkeySmashGame.manager.GraphicsDevice.BlendState = BlendState.Opaque; 
                 TurkeySmashGame.manager.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
 
-                model.Draw(TurkeySmashGame.manager.GraphicsDevice, camera);
-                //level.Draw(camera);
-                //foreach (Element3D element in elements)
-                //{
-                //    element.Draw(camera);
-                //}
+                foreach (AnimatedModel element in elements)
+                {
+                    element.Draw(TurkeySmashGame.manager.GraphicsDevice, camera);
+                }
 
                 //hud.Draw();
             }

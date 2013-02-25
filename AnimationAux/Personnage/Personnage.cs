@@ -6,7 +6,7 @@ namespace Libraries
     /// Personnage implemente toutes les features réalisablent par les joueurs et l'IA.
     /// Classe abstraite, ne peut être utilisé directement.
     /// </summary>
-    abstract class Personnage : AnimatedModel
+    public class Personnage : AnimatedModel
     {
         #region Fields
 
@@ -47,7 +47,6 @@ namespace Libraries
                 velocityX += 2.0f;
             else
                 XPos += 6.0f;
-            YRot = MathHelper.ToRadians(90);
         }
 
         protected void Left()
@@ -56,7 +55,6 @@ namespace Libraries
                 velocityX += -2.0f;
             else
                 XPos -= 6.0f;
-            YRot = MathHelper.ToRadians(270);
         }
 
         #endregion

@@ -16,15 +16,14 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Libraries
 {
-    class Level
+    public class Level
     {
-        private Sprite background;
         private Vector3[] spawnPoints = new Vector3[5];
         private Vector3 positionRespawn = new Vector3(0, 1100, 0);
         private Rectangle cadreDecor = new Rectangle(-3500, 2500, 7000, -5000);
         private Vector3 modelPosition = new Vector3(0, 0, 0);
-        
-        
+
+        public Sprite Background { get; set; }
         public Vector3 Position { get { return modelPosition; } set { modelPosition = value; } }
 
     }

@@ -15,7 +15,7 @@ using System.Threading;
 
 namespace Libraries
 {
-    class IA : Personnage
+    public class IA : Personnage
     {
         public IA(PlayerIndex Player, float rotation = 0.0f, int life = 5)
         {

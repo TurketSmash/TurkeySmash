@@ -14,34 +14,23 @@ using Microsoft.Xna.Framework.Media;
 
 #endregion
 
-namespace TurkeySmash
+namespace Libraries
 {
-    class Decor
+    public class Level
     {
-        #region Fields
-
         private Vector3[] spawnPoints = new Vector3[5];
-        private Vector3 positionRespawn = new Vector3(0,1100 , 0);
+        private Vector3 positionRespawn = new Vector3(0, 1100, 0);
         private Rectangle cadreDecor = new Rectangle(-3500, 2500, 7000, -5000);
         private List<Rectangle> GlobalHitBoxesList = new List<Rectangle>();
-        private List<Element3D> elements;
+        private List<AnimatedModel> elements;
         private Model model;
         private Vector3 modelPosition = new Vector3(0, 0, 0);
-        protected Matrix[] transforms;
-
-        #endregion
-
-        #region Properties
+        private Matrix[] transforms;
+        public Sprite background;
 
         public Vector3 Position { get { return modelPosition; } set { modelPosition = value; } }
 
-        #endregion
-
-        #region Construction and Initialization
-
-
-
-        public Decor(List<Element3D> elements)
+        public Level(string backgroundName, string levelName, List<AnimatedModel> elements, ContentManager content)
         {
             this.elements = elements;
             Position = Vector3.Zero;
@@ -51,9 +40,10 @@ namespace TurkeySmash
             GlobalHitBoxesList.Add(new Rectangle(-1825, -150, 3650, 150));
             GlobalHitBoxesList.Add(new Rectangle(-750, 0, 850, 250));
             GlobalHitBoxesList.Add(new Rectangle(400, 450, 725, 50));
+            background = new Sprite();
+            background.Load(content, backgroundName);
+            Load(content, levelName);
         }
-
-
 
         public void Init()
         {
@@ -67,28 +57,26 @@ namespace TurkeySmash
 
 
 
-        public void Load(ContentManager content, string name)
+        public void Load(ContentManager content, string assetName)
         {
-            model = content.Load<Model>(name);
+            model = content.Load<Model>(assetName);
             transforms = new Matrix[model.Bones.Count];
             model.CopyAbsoluteBoneTransformsTo(transforms);
         }
 
-        #endregion
 
 
-
-        public void Update()
+        public void Update(GameTime gameTime)
         {
-            foreach (Objet objet in elements)
+            foreach (AnimatedModel objet in elements)
             {
-                objet.Update();
+                objet.Update(gameTime);
                 Collision.CheckHitBoxe(GlobalHitBoxesList, objet);
             }
 
             foreach (Personnage personnage in elements)
             {
-                if (IsOutScreen((Objet)personnage))
+                if (IsOutScreen((AnimatedModel)personnage))
                 {
                     Respawn(personnage);
                 }
@@ -97,7 +85,7 @@ namespace TurkeySmash
 
 
 
-        public bool IsOutScreen(Objet objet)
+        public bool IsOutScreen(AnimatedModel objet)
         {
             return objet.XPos < cadreDecor.Left || objet.XPos > cadreDecor.Right || objet.YPos < cadreDecor.Bottom || objet.YPos > cadreDecor.Top;
         }
@@ -115,8 +103,25 @@ namespace TurkeySmash
             personnage.velocityY = 0;
         }
 
-        public void Draw(Camera camera) // Meme methode que Element3D sans rotation ni translation
+
+
+        public void Update(Personnage personnage)
         {
+            if (IsOutScreen(personnage))
+                Respawn(personnage);
+        }
+
+        public void Draw(SpriteBatch spriteBatch, GraphicsDevice device, Camera camera) // Meme methode que Element3D sans rotation ni translation
+        {
+            spriteBatch.Begin();
+
+            background.Draw(spriteBatch);
+
+            spriteBatch.End();
+
+            device.BlendState = BlendState.Opaque; //rendre les textures opaques
+            device.DepthStencilState = DepthStencilState.Default;
+
             foreach (ModelMesh mesh in model.Meshes)
             {
                 Matrix localWorld = transforms[mesh.ParentBone.Index];
@@ -132,4 +137,3 @@ namespace TurkeySmash
         }
     }
 }
-
