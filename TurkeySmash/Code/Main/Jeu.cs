@@ -19,8 +19,7 @@ namespace TurkeySmash
         private IA dude2;
         private AnimatedModel walk;
         private Level level;
-        private List<Personnage> players = new List<Personnage>();
-        private List<AnimatedModel> elements = new List<AnimatedModel>();
+        private AnimatedModel[] elements = new AnimatedModel[4];
         private HUD hud = new HUD();
         public static SoundEffect sonEspace = TurkeySmashGame.content.Load<SoundEffect>("Sons\\sonEspace");
         public SoundEffectInstance sonInstance = sonEspace.CreateInstance();
@@ -48,7 +47,7 @@ namespace TurkeySmash
             player.Looping = true;
             model.Size = new Vector2(50, 350);
 
-            elements.Add(model);
+            elements[0] = model;
             #endregion
 
             #region IA1
@@ -61,7 +60,7 @@ namespace TurkeySmash
             player2.Looping = true;
             dude2.Size = new Vector2(50, 350);
 
-            elements.Add(dude2);
+            elements[1] = dude2;
             #endregion
 
             if (SelectionNiveau.niveauSelect == "spacefarm")
@@ -117,7 +116,10 @@ namespace TurkeySmash
 
                 foreach (AnimatedModel element in elements)
                 {
-                    element.Draw(TurkeySmashGame.manager.GraphicsDevice, camera);
+                    if (element != null)
+                    {
+                        element.Draw(TurkeySmashGame.manager.GraphicsDevice, camera); 
+                    }
                 }
 
                 hud.Draw();

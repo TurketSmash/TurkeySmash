@@ -21,8 +21,8 @@ namespace Libraries
         private Vector3[] spawnPoints = new Vector3[5];
         private Vector3 positionRespawn = new Vector3(0, 1100, 0);
         private Rectangle cadreDecor = new Rectangle(-3500, 2500, 7000, -5000);
-        private List<Rectangle> GlobalHitBoxesList = new List<Rectangle>();
-        private List<AnimatedModel> elements;
+        private Rectangle[] GlobalHitBoxesList = new Rectangle[3];
+        private AnimatedModel[] elements;
         private Model model;
         private Vector3 modelPosition = new Vector3(0, 0, 0);
         private Matrix[] transforms;
@@ -30,7 +30,7 @@ namespace Libraries
 
         public Vector3 Position { get { return modelPosition; } set { modelPosition = value; } }
 
-        public Level(string backgroundName, string levelName, List<AnimatedModel> elements, ContentManager content)
+        public Level(string backgroundName, string levelName, AnimatedModel[] elements, ContentManager content)
         {
             this.elements = elements;
             Position = Vector3.Zero;
@@ -42,15 +42,15 @@ namespace Libraries
             Init();
             if (backgroundName == "Jeu\\space")
             {
-                GlobalHitBoxesList.Add(new Rectangle(-1825, -150, 3650, 150));
-                GlobalHitBoxesList.Add(new Rectangle(-750, 0, 850, 250));
-                GlobalHitBoxesList.Add(new Rectangle(400, 450, 725, 50));
+                GlobalHitBoxesList[0] = new Rectangle(-1825, -150, 3650, 150);
+                GlobalHitBoxesList[1] =new Rectangle(-750, 0, 850, 250);
+                GlobalHitBoxesList[2] = new Rectangle(400, 450, 725, 50);
             }
             else
             {
-                GlobalHitBoxesList.Add(new Rectangle(-1500, -50, 2800, 50));
-                GlobalHitBoxesList.Add(new Rectangle(1530, 75, 780, 15));
-                GlobalHitBoxesList.Add(new Rectangle(-550, 570, 1000, 30));
+                GlobalHitBoxesList[0] = new Rectangle(-1500, -50, 2800, 50);
+                GlobalHitBoxesList[1] = new Rectangle(1530, 75, 780, 15);
+                GlobalHitBoxesList[2] = new Rectangle(-550, 570, 1000, 30);
             }
             background = new Sprite();
             background.Load(content, backgroundName);
@@ -62,7 +62,8 @@ namespace Libraries
             int i = 0;
             foreach(Personnage player in elements)
             {
-                player.Init(spawnPoints[i]);
+                if (player != null)
+                    player.Init(spawnPoints[i]);
                 i++;
             }
         }
@@ -83,20 +84,26 @@ namespace Libraries
 
             foreach (AnimatedModel objet in elements)
             {
-                if (objet is IA)
+                if (objet != null)
                 {
-                    IA buffer = (IA)objet;
-                    buffer.targetPosition = elements[0].Position;     // CODE GROS PORC SPECIAL SOUTENANCE 
-                }                                                                       // CHRIS BOULE
-                objet.Update(gameTime);
-                Collision.CheckHitBoxe(GlobalHitBoxesList, objet);
+                    if (objet is IA)
+                    {
+                        IA buffer = (IA)objet;
+                        buffer.targetPosition = elements[0].Position;     // CODE GROS PORC SPECIAL SOUTENANCE 
+                    }                                                                       // CHRIS BOULE
+                    objet.Update(gameTime);
+                    Collision.CheckHitBoxe(GlobalHitBoxesList, objet);
+                }
             }
 
             foreach (Personnage personnage in elements)
             {
-                if (IsOutScreen((AnimatedModel)personnage))
+                if (personnage != null)
                 {
-                    Respawn(personnage);
+                    if (IsOutScreen((AnimatedModel)personnage))
+                    {
+                        Respawn(personnage);
+                    } 
                 }
             }
 
@@ -132,15 +139,18 @@ namespace Libraries
         /// <summary>
         /// Retourne vrai si la partie est terminée 
         /// </summary>
-        public bool Partieterminee(List<AnimatedModel> models)
+        public bool Partieterminee(AnimatedModel[] models)
         {
             int i = 0; // compte de nombre de mort
             int j = 0; // compte de nombre de personnage 
             foreach (Personnage player in models)
             {
-                j++;
-                if (player.Mort)
-                    i++;
+                if (player != null)
+                {
+                    j++;
+                    if (player.Mort)
+                        i++; 
+                }
             }
 
             return i > j - 2; // si le nombre de mort est supérieur ou egal a 1 vivant 

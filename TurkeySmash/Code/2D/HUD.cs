@@ -12,29 +12,36 @@ namespace TurkeySmash
 
         public HUD() { }
 
-        public void Load(List<AnimatedModel> players)
+        public void Load(AnimatedModel[] players)
         {
             int i = 0;
-            playersCount = players.Count;
             foreach (Personnage player in players)
             {
-                pourcentages[i] = new Font((i + 1) * (TurkeySmashGame.manager.PreferredBackBufferWidth / 4), 
-                                        (3.5f * TurkeySmashGame.manager.PreferredBackBufferHeight / 4));
-                pourcentages[i].NameFont = "Pourcent";
-                pourcentages[i].Load(TurkeySmashGame.content);
-                pourcentages[i].SizeText = 1.0f;
-                i++;
+                if (player != null)
+                {
+                    pourcentages[i] = new Font((i + 1) * (TurkeySmashGame.manager.PreferredBackBufferWidth / 4),
+                                            (3.5f * TurkeySmashGame.manager.PreferredBackBufferHeight / 4));
+                    pourcentages[i].NameFont = "Pourcent";
+                    pourcentages[i].Load(TurkeySmashGame.content);
+                    pourcentages[i].SizeText = 1.0f;
+                    playersCount++;
+                    i++;
+                }
             }
             pourcentages[0].Color = Color.Red;
         }
 
-        public void Update(List<AnimatedModel> players)
+        public void Update(AnimatedModel[] players)
         {
             int i = 0;
             foreach (Personnage player in players)
             {
-                pourcentages[i].Texte = Convert.ToString(player.Percent) + " %";
-                i++;
+                if (player != null)
+                {
+                    pourcentages[i].Texte = Convert.ToString(player.Percent) + " %";
+                    i++;
+                }
+
             }
         }
 
@@ -42,7 +49,7 @@ namespace TurkeySmash
         {
             TurkeySmashGame.spriteBatch.Begin();
 
-            for (int i = 0; i <= playersCount - 1; i++)
+            for (int i = 0; i < playersCount; i++)
             {
                 pourcentages[i].Draw(TurkeySmashGame.spriteBatch);
             }
